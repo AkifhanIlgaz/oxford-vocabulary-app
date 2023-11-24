@@ -40,12 +40,13 @@ class _SignInFormState extends State<SignInForm> {
                 prefixIcon: const Icon(Icons.lock_outline_rounded),
                 hintText: "Enter your password",
                 suffixIcon: IconButton(
-                    onPressed: _togglePasswordVisibility,
-                    icon: Icon(
-                      _passwordObscure
-                          ? Icons.visibility_off_outlined
-                          : Icons.visibility_outlined,
-                    )),
+                  onPressed: _togglePasswordVisibility,
+                  icon: Icon(
+                    _passwordObscure
+                        ? Icons.visibility_off_outlined
+                        : Icons.visibility_outlined,
+                  ),
+                ),
               ),
               obscureText: _passwordObscure,
               keyboardType: TextInputType.text,
@@ -59,7 +60,6 @@ class _SignInFormState extends State<SignInForm> {
                 style: TextButton.styleFrom(
                   alignment: Alignment.center,
                   backgroundColor: Colors.blue,
-                  
                 ),
                 onPressed: () {},
                 child: const Text("Sign In"),
