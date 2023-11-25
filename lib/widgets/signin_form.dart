@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:oxford_vocabulary_app/widgets/auth/buttons/submit.dart';
+import 'package:oxford_vocabulary_app/widgets/auth/horizontal_or_line.dart';
+import 'package:oxford_vocabulary_app/widgets/auth/input/email.dart';
+import 'package:oxford_vocabulary_app/widgets/auth/input/password.dart';
 
 class SignInForm extends StatefulWidget {
   const SignInForm({super.key});
@@ -9,66 +13,41 @@ class SignInForm extends StatefulWidget {
 
 class _SignInFormState extends State<SignInForm> {
   final _formKey = GlobalKey<FormState>();
-  var _passwordObscure = true;
 
-  void _togglePasswordVisibility() {
-    setState(() {
-      _passwordObscure = !_passwordObscure;
-    });
-  }
+  final _signInText = "Sign In";
+  final _signUpText = "Sign Up";
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+
     return Form(
       key: _formKey,
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: EdgeInsets.all(8.0),
         child: Column(
           children: [
-            TextFormField(
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                prefixIcon: Icon(Icons.email_outlined),
-                hintText: "Enter your email",
-              ),
-              keyboardType: TextInputType.emailAddress,
+            SizedBox(
+              width: size.width,
+              height: size.height / 3,
+              child: Image.asset("assets/images/apple_with_book.png"),
             ),
-            const SizedBox(height: 10),
-            TextFormField(
-              decoration: InputDecoration(
-                border: const OutlineInputBorder(),
-                prefixIcon: const Icon(Icons.lock_outline_rounded),
-                hintText: "Enter your password",
-                suffixIcon: IconButton(
-                  onPressed: _togglePasswordVisibility,
-                  icon: Icon(
-                    _passwordObscure
-                        ? Icons.visibility_off_outlined
-                        : Icons.visibility_outlined,
-                  ),
-                ),
-              ),
-              obscureText: _passwordObscure,
-              keyboardType: TextInputType.text,
-            ),
-            const SizedBox(
-              height: 20,
+            const AuthEmailInput(),
+            SizedBox(height: 10),
+            const AuthPasswordInput(),
+            SizedBox(height: 20),
+            const Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text("Already have an account?"),
+                Text("Forgot password?"),
+              ],
             ),
             SizedBox(
-              width: double.infinity,
-              child: TextButton(
-                style: TextButton.styleFrom(
-                  alignment: Alignment.center,
-                  backgroundColor: Colors.blue,
-                ),
-                onPressed: () {},
-                child: const Text("Sign In"),
-              ),
+              width: MediaQuery.of(context).size.width,
+              child: AuthSubmitButton(text: _signInText, onSubmit: () {}),
             ),
-            const SizedBox(
-              height: 20,
-            ),
-            Text("or"),
+            HorizontalOrLine(),
           ],
         ),
       ),
