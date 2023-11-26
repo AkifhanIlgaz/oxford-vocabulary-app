@@ -9,20 +9,17 @@ class AuthEmailInput extends StatefulWidget {
 }
 
 class _AuthEmailInputState extends State<AuthEmailInput> {
-  var _isValid = false;
-
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      decoration: InputDecoration(
-        prefixIcon: const Icon(Icons.email_outlined),
+      decoration: const InputDecoration(
+        prefixIcon: Icon(Icons.email_outlined),
         hintText: "Enter your email",
         fillColor: Colors.black,
-        suffixIcon: _isValid ? const Icon(Icons.check) : null,
       ),
       keyboardType: TextInputType.emailAddress,
       validator: (email) {
-        if (email == null) {
+        if (email == null || email.trim().isEmpty) {
           return "Please enter an email.";
         }
 
@@ -30,9 +27,6 @@ class _AuthEmailInputState extends State<AuthEmailInput> {
           return "Please enter a valid email.";
         }
 
-        setState(() {
-          _isValid = true;
-        });
         return null;
       },
     );

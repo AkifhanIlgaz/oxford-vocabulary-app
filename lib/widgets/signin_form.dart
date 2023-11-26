@@ -71,9 +71,6 @@ class _SignInFormState extends State<SignInForm> {
             ),
             const HorizontalOrLine(),
             _gap(),
-            Row(
-              children: [IconButton(onPressed: () {}, icon: Icon(Icons.mail))],
-            )
           ],
         ),
       ),
