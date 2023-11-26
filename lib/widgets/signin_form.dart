@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:oxford_vocabulary_app/main.dart';
 import 'package:oxford_vocabulary_app/widgets/auth/buttons/submit.dart';
 import 'package:oxford_vocabulary_app/widgets/auth/horizontal_or_line.dart';
 import 'package:oxford_vocabulary_app/widgets/auth/input/email.dart';
@@ -17,6 +18,10 @@ class _SignInFormState extends State<SignInForm> {
   final _signInText = "Sign In";
   final _signUpText = "Sign Up";
 
+  void _onSubmit() {
+    _formKey.currentState?.validate();
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -24,7 +29,7 @@ class _SignInFormState extends State<SignInForm> {
     return Form(
       key: _formKey,
       child: Padding(
-        padding: EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
             SizedBox(
@@ -33,24 +38,47 @@ class _SignInFormState extends State<SignInForm> {
               child: Image.asset("assets/images/apple_with_book.png"),
             ),
             const AuthEmailInput(),
-            SizedBox(height: 10),
+            _gap(),
             const AuthPasswordInput(),
-            SizedBox(height: 20),
-            const Row(
+            _gap(),
+            Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text("Already have an account?"),
-                Text("Forgot password?"),
+                TextButton(
+                  onPressed: () {},
+                  child: Text(
+                    "Already have an account ?",
+                    style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                          color: ProjectColors.mainColor,
+                        ),
+                  ),
+                ),
+                TextButton(
+                  onPressed: () {},
+                  child: Text(
+                    "Forgot password ?",
+                    style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                          color: ProjectColors.mainColor,
+                        ),
+                  ),
+                )
               ],
             ),
+            _gap(),
             SizedBox(
               width: MediaQuery.of(context).size.width,
-              child: AuthSubmitButton(text: _signInText, onSubmit: () {}),
+              child: AuthSubmitButton(text: _signInText, onSubmit: _onSubmit),
             ),
-            HorizontalOrLine(),
+            const HorizontalOrLine(),
+            _gap(),
+            Row(
+              children: [IconButton(onPressed: () {}, icon: Icon(Icons.mail))],
+            )
           ],
         ),
       ),
     );
   }
+
+  SizedBox _gap() => const SizedBox(height: 20);
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:oxford_vocabulary_app/main.dart';
 
 class HorizontalOrLine extends StatelessWidget {
   const HorizontalOrLine({
@@ -10,23 +11,24 @@ class HorizontalOrLine extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Row(
+    return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Expanded(
           child: Divider(
             height: 10,
-            color: Colors.deepOrange,
+            color: ProjectColors.mainColor,
             endIndent: 10,
             thickness: 1,
           ),
         ),
-        Text(
+        const Text(
           "Sign in with",
           style: TextStyle(color: Colors.blueGrey),
         ),
         Expanded(
           child: Divider(
+            color: ProjectColors.mainColor,
             indent: 10,
             thickness: 1,
           ),

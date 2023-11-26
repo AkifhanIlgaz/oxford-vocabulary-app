@@ -11,8 +11,16 @@ class VocabularyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData.light(),
+      theme: ThemeData.light(useMaterial3: true).copyWith(
+        inputDecorationTheme: InputDecorationTheme(
+          prefixIconColor: Colors.amber[900],
+        ),
+      ),
       home: const AuthScreen(),
     );
   }
+}
+
+class ProjectColors {
+  static final mainColor = Colors.amber[900];
 }
