@@ -29,7 +29,7 @@ class CircularButtonWithoutSplash extends StatelessWidget {
           bottom: 10.0,
         ),
         decoration: BoxDecoration(
-            color: (filled) ? Color(fillColorInHex).withOpacity(.9) : null,
+            color: (filled) ? Color(fillColorInHex) : null,
             borderRadius: BorderRadius.circular(10.0),
             border: Border.all(
               style: BorderStyle.solid,

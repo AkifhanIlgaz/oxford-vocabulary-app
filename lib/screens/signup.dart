@@ -1,10 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:oxford_vocabulary_app/configs/configs.dart';
 import 'package:oxford_vocabulary_app/main.dart';
-import 'package:oxford_vocabulary_app/widgets/auth/buttons/submit.dart';
 import 'package:oxford_vocabulary_app/widgets/auth/input/email.dart';
 import 'package:oxford_vocabulary_app/widgets/auth/input/password.dart';
-import 'package:oxford_vocabulary_app/widgets/horizontal_line_with_text.dart';
+import 'package:oxford_vocabulary_app/widgets/circular_button_without_splash.dart';
 import 'package:oxford_vocabulary_app/widgets/snackbar.dart';
 
 class SignupScreen extends StatefulWidget {
@@ -76,11 +77,14 @@ class _SignupScreenState extends State<SignupScreen> {
               children: [
                 SizedBox(
                   width: size.width,
-                  height: size.height / 3,
-                  child: Image.asset("assets/images/apple_with_book.png"),
+                  child: SvgPicture.asset("assets/vectors/signUp.svg"),
                 ),
                 AuthEmailInput(
                   onSaved: onEmailSaved,
+                ),
+                _gap(),
+                AuthPasswordInput(
+                  onSaved: onPasswordSaved,
                 ),
                 _gap(),
                 AuthPasswordInput(
@@ -98,27 +102,15 @@ class _SignupScreenState extends State<SignupScreen> {
                             ),
                       ),
                     ),
-                    TextButton(
-                      onPressed: () {},
-                      child: Text(
-                        "Forgot password ?",
-                        style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                              color: ProjectColors.mainColor,
-                            ),
-                      ),
-                    )
                   ],
                 ),
-                SizedBox(
-                  width: MediaQuery.of(context).size.width,
-                  child: AuthSubmitButton(text: "Sign In", onSubmit: onSubmit),
-                ),
-                SizedBox(
-                  width: MediaQuery.of(context).size.width,
-                  child: const HorizontalLineWithText(
-                    title: "or",
-                  ),
-                ),
+                CircularButtonWithoutSplash(
+                  buttonText: "Sign Up",
+                  topMargin: 10,
+                  filled: true,
+                  fillColorInHex: kPrimaryColor,
+                  onTap: () {},
+                )
               ],
             ),
           ),

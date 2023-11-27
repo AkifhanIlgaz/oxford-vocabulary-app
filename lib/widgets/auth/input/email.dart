@@ -19,7 +19,9 @@ class _AuthEmailInputState extends State<AuthEmailInput> {
   Widget build(BuildContext context) {
     return TextFormField(
       decoration: const InputDecoration(
-        prefixIcon: Icon(Icons.email_outlined),
+        prefixIcon: Icon(
+          Icons.email_outlined,
+        ),
         hintText: "Enter your email",
         prefixIconColor: Color(kPrimaryColor),
       ),
