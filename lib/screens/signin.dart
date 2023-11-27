@@ -85,7 +85,6 @@ class _SigninScreenState extends State<SigninScreen> {
                 AuthPasswordInput(
                   onSaved: onPasswordSaved,
                 ),
-                _gap(),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

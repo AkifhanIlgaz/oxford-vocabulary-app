@@ -2,12 +2,12 @@ import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 
 class AuthEmailInput extends StatefulWidget {
-  AuthEmailInput({
+  const AuthEmailInput({
     super.key,
     required this.onSaved,
   });
 
-  void Function(String) onSaved;
+  final void Function(String) onSaved;
 
   @override
   State<AuthEmailInput> createState() => _AuthEmailInputState();

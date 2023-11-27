@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 class AuthPasswordInput extends StatefulWidget {
-  AuthPasswordInput({
+  const AuthPasswordInput({
     super.key,
     required this.onSaved,
   });
 
-  void Function(String) onSaved;
+  final void Function(String) onSaved;
 
   @override
   State<AuthPasswordInput> createState() => _AuthPasswordInputState();
@@ -44,6 +44,12 @@ class _AuthPasswordInputState extends State<AuthPasswordInput> {
             if (password == null || password.trim().isEmpty) {
               return "Please enter a password.";
             }
+
+            if (password.trim().length < 6) {
+              return "Password must be at least 6 characters long.";
+            }
+
+            return null;
           },
           onSaved: (value) {
             widget.onSaved(value!);
