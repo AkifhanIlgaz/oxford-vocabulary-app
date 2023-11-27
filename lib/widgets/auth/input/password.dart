@@ -5,9 +5,11 @@ class AuthPasswordInput extends StatefulWidget {
   const AuthPasswordInput({
     super.key,
     required this.onSaved,
+    this.hintText = "Enter your password",
   });
 
   final void Function(String) onSaved;
+  final String hintText;
 
   @override
   State<AuthPasswordInput> createState() => _AuthPasswordInputState();
@@ -30,7 +32,7 @@ class _AuthPasswordInputState extends State<AuthPasswordInput> {
           decoration: InputDecoration(
             prefixIcon: const Icon(Icons.lock_outline_rounded),
             prefixIconColor: const Color(kPrimaryColor),
-            hintText: "Enter your password",
+            hintText: widget.hintText,
             suffixIcon: IconButton(
               onPressed: _togglePasswordVisibility,
               icon: Icon(

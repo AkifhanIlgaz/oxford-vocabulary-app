@@ -98,6 +98,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 _gap(),
                 AuthPasswordInput(
                   onSaved: onSecondPasswordSaved,
+                  hintText: "Confirm password",
                 ),
                 _gap(),
                 if (_password != _secondPassword)
