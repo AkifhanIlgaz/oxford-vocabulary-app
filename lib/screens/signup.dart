@@ -22,6 +22,7 @@ class _SignupScreenState extends State<SignupScreen> {
 
   String _email = "";
   String _password = "";
+  String _secondPassword = "";
 
   void onEmailSaved(String email) {
     setState(() {
@@ -32,6 +33,12 @@ class _SignupScreenState extends State<SignupScreen> {
   void onPasswordSaved(String password) {
     setState(() {
       _password = password;
+    });
+  }
+
+  void onSecondPasswordSaved(String password) {
+    setState(() {
+      _secondPassword = password;
     });
   }
 
@@ -90,8 +97,26 @@ class _SignupScreenState extends State<SignupScreen> {
                 ),
                 _gap(),
                 AuthPasswordInput(
-                  onSaved: onPasswordSaved,
+                  onSaved: onSecondPasswordSaved,
                 ),
+                _gap(),
+                if (_password != _secondPassword)
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    heightFactor: 0.4,
+                    child: TextButton.icon(
+                      style: TextButton.styleFrom(
+                        alignment: Alignment.center,
+                        iconColor: Colors.red,
+                        disabledForegroundColor: Colors.red,
+                      ),
+                      onPressed: null,
+                      icon: const Icon(
+                        Icons.close_outlined,
+                      ),
+                      label: const Text("Passwords doesn't match!"),
+                    ),
+                  ),
                 _gap(),
                 CircularButtonWithoutSplash(
                   buttonText: "Sign Up",

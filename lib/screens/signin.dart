@@ -106,13 +106,8 @@ class _SigninScreenState extends State<SigninScreen> {
                       onSaved: onPasswordSaved,
                     ),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        TextButton(
-                          onPressed: () {},
-                          child: const Text("Don't have an account ?",
-                              style: kSmallTextStyle),
-                        ),
                         TextButton(
                           onPressed: () {},
                           child: const Text(

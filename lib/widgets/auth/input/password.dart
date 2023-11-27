@@ -56,6 +56,9 @@ class _AuthPasswordInputState extends State<AuthPasswordInput> {
           onSaved: (value) {
             widget.onSaved(value!);
           },
+          onChanged: (value) {
+            widget.onSaved(value);
+          },
         ),
       ],
     );
