@@ -1,5 +1,6 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
+import 'package:oxford_vocabulary_app/configs/configs.dart';
 
 class AuthEmailInput extends StatefulWidget {
   const AuthEmailInput({
@@ -21,6 +22,7 @@ class _AuthEmailInputState extends State<AuthEmailInput> {
         prefixIcon: Icon(Icons.email_outlined),
         hintText: "Enter your email",
         fillColor: Colors.black,
+        prefixIconColor: Color(kPrimaryColor),
       ),
       keyboardType: TextInputType.emailAddress,
       validator: (email) {

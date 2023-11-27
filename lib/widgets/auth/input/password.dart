@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:oxford_vocabulary_app/configs/configs.dart';
 
 class AuthPasswordInput extends StatefulWidget {
   const AuthPasswordInput({
@@ -28,6 +29,7 @@ class _AuthPasswordInputState extends State<AuthPasswordInput> {
         TextFormField(
           decoration: InputDecoration(
             prefixIcon: const Icon(Icons.lock_outline_rounded),
+            prefixIconColor: const Color(kPrimaryColor),
             hintText: "Enter your password",
             suffixIcon: IconButton(
               onPressed: _togglePasswordVisibility,
