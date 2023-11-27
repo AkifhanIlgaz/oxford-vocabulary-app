@@ -11,8 +11,6 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-
     return Scaffold(
       body: SafeArea(
           child: ListView(
@@ -144,6 +142,4 @@ class SplashScreen extends StatelessWidget {
       ),
     );
   }
-
-  SizedBox _gap() => const SizedBox(height: 10);
 }
