@@ -133,9 +133,10 @@ class _SigninScreenState extends State<SigninScreen> {
                         title: "or",
                       ),
                     ),
-                    SizedBox(height: 10),
+                    const SizedBox(height: 10),
                     InkWell(
                       borderRadius: BorderRadius.circular(20),
+                      
                       onTap: () {},
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,

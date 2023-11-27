@@ -21,7 +21,6 @@ class _AuthEmailInputState extends State<AuthEmailInput> {
       decoration: const InputDecoration(
         prefixIcon: Icon(Icons.email_outlined),
         hintText: "Enter your email",
-        fillColor: Colors.black,
         prefixIconColor: Color(kPrimaryColor),
       ),
       keyboardType: TextInputType.emailAddress,
