@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:oxford_vocabulary_app/configs/configs.dart';
 import 'package:oxford_vocabulary_app/main.dart';
+import 'package:oxford_vocabulary_app/screens/signin.dart';
 import 'package:oxford_vocabulary_app/widgets/auth/input/email.dart';
 import 'package:oxford_vocabulary_app/widgets/auth/input/password.dart';
 import 'package:oxford_vocabulary_app/widgets/circular_button_without_splash.dart';
+import 'package:oxford_vocabulary_app/widgets/horizontal_line_with_text.dart';
 import 'package:oxford_vocabulary_app/widgets/snackbar.dart';
 
 class SignupScreen extends StatefulWidget {
@@ -90,27 +92,31 @@ class _SignupScreenState extends State<SignupScreen> {
                 AuthPasswordInput(
                   onSaved: onPasswordSaved,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    TextButton(
-                      onPressed: () {},
-                      child: Text(
-                        "Already have an account ?",
-                        style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                              color: ProjectColors.mainColor,
-                            ),
-                      ),
-                    ),
-                  ],
-                ),
+                _gap(),
                 CircularButtonWithoutSplash(
                   buttonText: "Sign Up",
                   topMargin: 10,
                   filled: true,
                   fillColorInHex: kPrimaryColor,
                   onTap: () {},
-                )
+                ),
+                const HorizontalLineWithText(
+                  title: "Already have an account ?",
+                ),
+                CircularButtonWithoutSplash(
+                  buttonText: "Sign In",
+                  topMargin: 10,
+                  filled: false,
+                  fillColorInHex: kPrimaryColor,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (ctx) => const SigninScreen(),
+                      ),
+                    );
+                  },
+                ),
               ],
             ),
           ),

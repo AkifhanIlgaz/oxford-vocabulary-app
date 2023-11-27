@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:oxford_vocabulary_app/configs/configs.dart';
 import 'package:oxford_vocabulary_app/main.dart';
+import 'package:oxford_vocabulary_app/screens/signup.dart';
 import 'package:oxford_vocabulary_app/widgets/auth/input/email.dart';
 import 'package:oxford_vocabulary_app/widgets/auth/input/password.dart';
 import 'package:oxford_vocabulary_app/widgets/circular_button_without_splash.dart';
@@ -136,23 +137,56 @@ class _SigninScreenState extends State<SigninScreen> {
                     const SizedBox(height: 10),
                     InkWell(
                       borderRadius: BorderRadius.circular(20),
-                      
                       onTap: () {},
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          SvgPicture.asset(
-                            "assets/vectors/google.svg",
-                            width: 24,
-                          ),
-                          const SizedBox(width: 10),
-                          const Text(
-                            "Sign in with Google",
-                            style: TextStyle(fontSize: 16),
-                          ),
-                        ],
+                      child: Container(
+                        width: 300,
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 5,
+                        ),
+                        margin: const EdgeInsets.only(
+                          bottom: 10.0,
+                        ),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10.0),
+                            border: Border.all(
+                              style: BorderStyle.solid,
+                              color: const Color(kPrimaryColor),
+                            )),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            SvgPicture.asset(
+                              "assets/vectors/google.svg",
+                              width: 20,
+                            ),
+                            const SizedBox(width: 10),
+                            const Text(
+                              "Sign in with Google",
+                              style: TextStyle(
+                                fontFamily: 'Montserrat',
+                                fontSize: 18.0,
+                                fontWeight: FontWeight.w400,
+                                color: Color(kPrimaryColor),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
+                    ),
+                    CircularButtonWithoutSplash(
+                      buttonText: "Create Account",
+                      topMargin: 10,
+                      filled: false,
+                      fillColorInHex: kPrimaryColor,
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (ctx) => const SignupScreen(),
+                          ),
+                        );
+                      },
                     ),
                   ],
                 ),

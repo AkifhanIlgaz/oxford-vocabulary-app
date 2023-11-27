@@ -13,12 +13,12 @@ class HorizontalLineWithText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.symmetric(vertical: 8),
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Expanded(
+          const Expanded(
             child: Divider(
               height: 10,
               color: Color(kPrimaryColor),
@@ -26,11 +26,11 @@ class HorizontalLineWithText extends StatelessWidget {
               thickness: 1,
             ),
           ),
-          Text("or",
-              style: TextStyle(
+          Text(title,
+              style: const TextStyle(
                 color: Colors.blueGrey,
               )),
-          Expanded(
+          const Expanded(
             child: Divider(
               color: Color(kPrimaryColor),
               indent: 10,
