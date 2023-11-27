@@ -1,5 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:oxford_vocabulary_app/main.dart';
 import 'package:oxford_vocabulary_app/widgets/auth/buttons/submit.dart';
 import 'package:oxford_vocabulary_app/widgets/auth/input/email.dart';
@@ -57,6 +59,23 @@ class _SigninScreenState extends State<SigninScreen> {
             .showSnackBar(CustomSnackBar(content: snackBarContent));
       }
     }
+  }
+
+  void signInWithGoogle() async {
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+    final GoogleSignInAuthentication? googleAuth =
+        await googleUser?.authentication;
+
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth?.accessToken,
+      idToken: googleAuth?.idToken,
+    );
+
+    final userCredentials =
+        await FirebaseAuth.instance.signInWithCredential(credential);
+
+    print(userCredentials);
   }
 
   @override
@@ -118,6 +137,22 @@ class _SigninScreenState extends State<SigninScreen> {
                   child: const HorizontalLineWithText(
                     title: "or",
                   ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    IconButton(
+                      onPressed: signInWithGoogle,
+                      icon: const FaIcon(
+                        FontAwesomeIcons.google,
+                      ),
+                    ),
+                    IconButton(
+                        onPressed: () {},
+                        icon: const FaIcon(
+                          FontAwesomeIcons.twitter,
+                        ))
+                  ],
                 ),
               ],
             ),
