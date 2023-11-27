@@ -22,7 +22,7 @@ class CircularButtonWithoutSplash extends StatelessWidget {
       child: Container(
         width: 300.0,
         padding: const EdgeInsets.symmetric(
-          vertical: 13.0,
+          vertical: 5.0,
         ),
         margin: EdgeInsets.only(
           top: topMargin,
@@ -30,7 +30,7 @@ class CircularButtonWithoutSplash extends StatelessWidget {
         ),
         decoration: BoxDecoration(
             color: (filled) ? Color(fillColorInHex) : null,
-            borderRadius: BorderRadius.circular(100.0),
+            borderRadius: BorderRadius.circular(10.0),
             border: Border.all(
               style: BorderStyle.solid,
               color: Color(fillColorInHex),
@@ -41,7 +41,7 @@ class CircularButtonWithoutSplash extends StatelessWidget {
           style: TextStyle(
             fontFamily: 'Montserrat',
             fontSize: 18.0,
-            fontWeight: FontWeight.w500,
+            fontWeight: FontWeight.w400,
             color: (filled) ? Colors.white : Color(fillColorInHex),
           ),
         ),

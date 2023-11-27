@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:oxford_vocabulary_app/main.dart';
+import 'package:oxford_vocabulary_app/configs/configs.dart';
 
 class HorizontalLineWithText extends StatelessWidget {
   const HorizontalLineWithText({
@@ -13,26 +13,26 @@ class HorizontalLineWithText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8),
+    return const Padding(
+      padding: EdgeInsets.symmetric(vertical: 8),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Expanded(
             child: Divider(
               height: 10,
-              color: ProjectColors.mainColor,
+              color: Color(kPrimaryColor),
               endIndent: 10,
               thickness: 1,
             ),
           ),
-          const Text(
-            "or",
-            style: TextStyle(color: Colors.blueGrey),
-          ),
+          Text("or",
+              style: TextStyle(
+                color: Colors.blueGrey,
+              )),
           Expanded(
             child: Divider(
-              color: ProjectColors.mainColor,
+              color: Color(kPrimaryColor),
               indent: 10,
               thickness: 1,
             ),

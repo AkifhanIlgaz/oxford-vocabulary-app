@@ -16,7 +16,7 @@ class SplashScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
           child: ListView(
-        padding: const EdgeInsets.symmetric(horizontal: 8),
+        padding: const EdgeInsets.symmetric(horizontal: 24),
         children: [
           const SizedBox(height: 100),
           Center(
@@ -38,7 +38,7 @@ class SplashScreen extends StatelessWidget {
               top: 15.0,
               left: 50.0,
               right: 50.0,
-              bottom: 5.0,
+              bottom: 15.0,
             ),
             child: const Text(
               'Vocabulary is a matter of word building as well as word using',
@@ -48,7 +48,7 @@ class SplashScreen extends StatelessWidget {
           ),
           CircularButtonWithoutSplash(
             buttonText: 'Sign In',
-            topMargin: 60,
+            topMargin: 20,
             filled: true,
             fillColorInHex: kPrimaryColor,
             onTap: () {
@@ -62,6 +62,7 @@ class SplashScreen extends StatelessWidget {
               );
             },
           ),
+          const HorizontalLineWithText(title: "or"),
           CircularButtonWithoutSplash(
             buttonText: 'Sign Up',
             topMargin: 20,

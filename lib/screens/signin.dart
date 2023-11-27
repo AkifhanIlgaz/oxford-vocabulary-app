@@ -1,11 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:oxford_vocabulary_app/configs/configs.dart';
 import 'package:oxford_vocabulary_app/main.dart';
-import 'package:oxford_vocabulary_app/widgets/auth/buttons/submit.dart';
 import 'package:oxford_vocabulary_app/widgets/auth/input/email.dart';
 import 'package:oxford_vocabulary_app/widgets/auth/input/password.dart';
+import 'package:oxford_vocabulary_app/widgets/circular_button_without_splash.dart';
 import 'package:oxford_vocabulary_app/widgets/horizontal_line_with_text.dart';
 import 'package:oxford_vocabulary_app/widgets/snackbar.dart';
 
@@ -83,78 +84,78 @@ class _SigninScreenState extends State<SigninScreen> {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-      ),
-      body: SingleChildScrollView(
-        child: Form(
-          key: _formKey,
-          child: Padding(
-            padding: ProjectPaddings.ScreenHorizontalPadding,
-            child: Column(
-              children: [
-                SizedBox(
-                  width: size.width,
-                  height: size.height / 3,
-                  child: Image.asset("assets/images/apple_with_book.png"),
-                ),
-                AuthEmailInput(
-                  onSaved: onEmailSaved,
-                ),
-                _gap(),
-                AuthPasswordInput(
-                  onSaved: onPasswordSaved,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      body: SafeArea(
+        child: Center(
+          child: SingleChildScrollView(
+            child: Form(
+              key: _formKey,
+              child: Padding(
+                padding: ProjectPaddings.ScreenHorizontalPadding,
+                child: Column(
                   children: [
-                    TextButton(
-                      onPressed: () {},
-                      child: Text(
-                        "Already have an account ?",
-                        style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                              color: ProjectColors.mainColor,
-                            ),
+                    SizedBox(
+                      width: size.width,
+                      child: SvgPicture.asset("assets/vectors/welcomeBack.svg"),
+                    ),
+                    AuthEmailInput(
+                      onSaved: onEmailSaved,
+                    ),
+                    _gap(),
+                    AuthPasswordInput(
+                      onSaved: onPasswordSaved,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        TextButton(
+                          onPressed: () {},
+                          child: const Text("Don't have an account ?",
+                              style: kSmallTextStyle),
+                        ),
+                        TextButton(
+                          onPressed: () {},
+                          child: const Text(
+                            "Forgot password ?",
+                            style: kSmallTextStyle,
+                          ),
+                        )
+                      ],
+                    ),
+                    CircularButtonWithoutSplash(
+                        buttonText: "Sign In",
+                        topMargin: 10,
+                        filled: true,
+                        fillColorInHex: kPrimaryColor,
+                        onTap: onSubmit),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width,
+                      child: const HorizontalLineWithText(
+                        title: "or",
                       ),
                     ),
-                    TextButton(
-                      onPressed: () {},
-                      child: Text(
-                        "Forgot password ?",
-                        style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                              color: ProjectColors.mainColor,
-                            ),
-                      ),
-                    )
-                  ],
-                ),
-                SizedBox(
-                  width: MediaQuery.of(context).size.width,
-                  child: AuthSubmitButton(text: "Sign In", onSubmit: onSubmit),
-                ),
-                SizedBox(
-                  width: MediaQuery.of(context).size.width,
-                  child: const HorizontalLineWithText(
-                    title: "or",
-                  ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    IconButton(
-                      onPressed: signInWithGoogle,
-                      icon: const FaIcon(
-                        FontAwesomeIcons.google,
+                    SizedBox(height: 10),
+                    InkWell(
+                      borderRadius: BorderRadius.circular(20),
+                      onTap: () {},
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          SvgPicture.asset(
+                            "assets/vectors/google.svg",
+                            width: 24,
+                          ),
+                          const SizedBox(width: 10),
+                          const Text(
+                            "Sign in with Google",
+                            style: TextStyle(fontSize: 16),
+                          ),
+                        ],
                       ),
                     ),
-                    IconButton(
-                        onPressed: () {},
-                        icon: const FaIcon(
-                          FontAwesomeIcons.twitter,
-                        ))
                   ],
                 ),
-              ],
+              ),
             ),
           ),
         ),
