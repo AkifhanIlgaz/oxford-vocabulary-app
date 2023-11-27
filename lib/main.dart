@@ -61,3 +61,7 @@ class ProjectColors {
 class ProjectPaddings {
   static const ScreenHorizontalPadding = EdgeInsets.symmetric(horizontal: 28);
 }
+
+class ProjectRadiuses {
+  static const SnackBarRadius = const Radius.circular(20);
+}

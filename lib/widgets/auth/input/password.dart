@@ -42,7 +42,7 @@ class _AuthPasswordInputState extends State<AuthPasswordInput> {
           keyboardType: TextInputType.text,
           validator: (password) {
             if (password == null || password.trim().isEmpty) {
-              return "Please enter a password";
+              return "Please enter a password.";
             }
           },
           onSaved: (value) {
