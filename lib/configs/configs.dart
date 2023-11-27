@@ -7,7 +7,7 @@ const kLightBlack = Colors.black12;
 const kSmallTextStyle = TextStyle(
   fontFamily: 'Montserrat',
   fontWeight: FontWeight.w400,
-  fontSize: 14.0,
+  fontSize: 12.0,
   color: Color(kPrimaryColor),
 );
 
@@ -20,7 +20,7 @@ const kAppBarStyle = TextStyle(
 const kLargeTextStyle = TextStyle(
   fontFamily: 'Montserrat',
   fontWeight: FontWeight.w600,
-  fontSize: 20.0,
+  fontSize: 18.0,
   color: Color(kPrimaryColor),
 );
 
@@ -30,7 +30,7 @@ const kCustomCardWordTextStyle = TextStyle(
   fontFamily: 'Montserrat',
 );
 
-const kBackgroundColor = Color(0xffbbd5d5);
+const kBackgroundColor = Color.fromARGB(255, 234, 247, 247);
 
 const kMeaningTextStyle = TextStyle(
     fontFamily: 'Montserrat',

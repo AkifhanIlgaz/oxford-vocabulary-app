@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:oxford_vocabulary_app/configs/configs.dart';
 import 'package:oxford_vocabulary_app/firebase_options.dart';
 import 'package:oxford_vocabulary_app/screens/home.dart';
 import 'package:oxford_vocabulary_app/screens/splash.dart';
@@ -25,6 +26,7 @@ class VocabularyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData.light().copyWith(
         primaryColor: const Color(0xffff4f18),
+        scaffoldBackgroundColor: kBackgroundColor,
       ),
       home: const AuthStream(),
     );
