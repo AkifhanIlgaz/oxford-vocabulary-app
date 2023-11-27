@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 
 class AuthPasswordInput extends StatefulWidget {
-  const AuthPasswordInput({super.key});
+  AuthPasswordInput({
+    super.key,
+    required this.onSaved,
+  });
+
+  void Function(String) onSaved;
 
   @override
   State<AuthPasswordInput> createState() => _AuthPasswordInputState();
@@ -40,53 +45,10 @@ class _AuthPasswordInputState extends State<AuthPasswordInput> {
               return "Please enter a password";
             }
           },
+          onSaved: (value) {
+            widget.onSaved(value!);
+          },
         ),
-        const SizedBox(
-          height: 20,
-        ),
-        Container(
-            width: double.infinity,
-            height: 200,
-            decoration: BoxDecoration(
-              borderRadius: const BorderRadius.all(Radius.circular(10)),
-              border: Border.all(
-                color: Colors.red,
-                width: 2,
-              ),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(5.0),
-              child: Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      top: 16,
-                      left: 10,
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Your password needs to:",
-                          style: Theme.of(context).textTheme.titleMedium,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            const Icon(Icons.check_outlined),
-                            Text(
-                              "include both lower and upper case characters",
-                              style: Theme.of(context).textTheme.titleSmall,
-                            ),
-                          ],
-                        ),
-                        Text("Your password needs to: "),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ))
       ],
     );
   }
