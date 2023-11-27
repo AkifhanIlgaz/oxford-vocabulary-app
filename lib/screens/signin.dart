@@ -58,7 +58,7 @@ class _SigninScreenState extends State<SigninScreen> {
       if (snackBarContent.isNotEmpty) {
         ScaffoldMessenger.of(context).clearSnackBars();
         ScaffoldMessenger.of(context)
-            .showSnackBar(CustomSnackBar(content: snackBarContent));
+            .showSnackBar(customSnackBar(content: snackBarContent));
       }
     }
   }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:oxford_vocabulary_app/main.dart';
 
-SnackBar CustomSnackBar({
+SnackBar customSnackBar({
   required String content,
   Duration duration = const Duration(seconds: 3),
 }) {

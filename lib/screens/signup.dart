@@ -64,7 +64,7 @@ class _SignupScreenState extends State<SignupScreen> {
       if (snackBarContent.isNotEmpty) {
         ScaffoldMessenger.of(context).clearSnackBars();
         ScaffoldMessenger.of(context)
-            .showSnackBar(CustomSnackBar(content: snackBarContent));
+            .showSnackBar(customSnackBar(content: snackBarContent));
       }
     }
   }
@@ -74,76 +74,75 @@ class _SignupScreenState extends State<SignupScreen> {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-      ),
-      body: SingleChildScrollView(
-        child: Form(
-          key: _formKey,
-          child: Padding(
-            padding: ProjectPaddings.ScreenHorizontalPadding,
-            child: Column(
-              children: [
-                SizedBox(
-                  width: size.width,
-                  child: SvgPicture.asset("assets/vectors/signUp.svg"),
-                ),
-                AuthEmailInput(
-                  onSaved: onEmailSaved,
-                ),
-                _gap(),
-                AuthPasswordInput(
-                  onSaved: onPasswordSaved,
-                ),
-                _gap(),
-                AuthPasswordInput(
-                  onSaved: onSecondPasswordSaved,
-                  hintText: "Confirm your password",
-                ),
-                _gap(),
-                if (_password != _secondPassword)
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    heightFactor: 0.4,
-                    child: TextButton.icon(
-                      style: TextButton.styleFrom(
-                        alignment: Alignment.center,
-                        iconColor: Colors.red,
-                        disabledForegroundColor: Colors.red,
-                      ),
-                      onPressed: null,
-                      icon: const Icon(
-                        Icons.close_outlined,
-                      ),
-                      label: const Text("Passwords doesn't match!"),
-                    ),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Form(
+            key: _formKey,
+            child: Padding(
+              padding: ProjectPaddings.ScreenHorizontalPadding,
+              child: Column(
+                children: [
+                  SizedBox(
+                    width: size.width,
+                    child: SvgPicture.asset("assets/vectors/signUp.svg"),
                   ),
-                _gap(),
-                CircularButtonWithoutSplash(
-                  buttonText: "Sign Up",
-                  topMargin: 10,
-                  filled: true,
-                  fillColorInHex: kPrimaryColor,
-                  onTap: () {},
-                ),
-                const HorizontalLineWithText(
-                  title: "Already have an account ?",
-                ),
-                CircularButtonWithoutSplash(
-                  buttonText: "Sign In",
-                  topMargin: 10,
-                  filled: false,
-                  fillColorInHex: kPrimaryColor,
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (ctx) => const SigninScreen(),
+                  AuthEmailInput(
+                    onSaved: onEmailSaved,
+                  ),
+                  _gap(),
+                  AuthPasswordInput(
+                    onSaved: onPasswordSaved,
+                  ),
+                  _gap(),
+                  AuthPasswordInput(
+                    onSaved: onSecondPasswordSaved,
+                    hintText: "Confirm your password",
+                  ),
+                  _gap(),
+                  if (_password != _secondPassword)
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      heightFactor: 0.4,
+                      child: TextButton.icon(
+                        style: TextButton.styleFrom(
+                          alignment: Alignment.center,
+                          iconColor: Colors.red,
+                          disabledForegroundColor: Colors.red,
+                        ),
+                        onPressed: null,
+                        icon: const Icon(
+                          Icons.close_outlined,
+                        ),
+                        label: const Text("Passwords doesn't match!"),
                       ),
-                    );
-                  },
-                ),
-              ],
+                    ),
+                  _gap(),
+                  CircularButtonWithoutSplash(
+                    buttonText: "Sign Up",
+                    topMargin: 10,
+                    filled: true,
+                    fillColorInHex: kPrimaryColor,
+                    onTap: () {},
+                  ),
+                  const HorizontalLineWithText(
+                    title: "Already have an account ?",
+                  ),
+                  CircularButtonWithoutSplash(
+                    buttonText: "Sign In",
+                    topMargin: 10,
+                    filled: false,
+                    fillColorInHex: kPrimaryColor,
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (ctx) => const SigninScreen(),
+                        ),
+                      );
+                    },
+                  ),
+                ],
+              ),
             ),
           ),
         ),
