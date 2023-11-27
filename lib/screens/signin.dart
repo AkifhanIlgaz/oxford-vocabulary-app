@@ -37,7 +37,7 @@ class _SigninScreenState extends State<SigninScreen> {
     _formKey.currentState!.save();
 
     try {
-      final userCredentials = await FirebaseAuth.instance
+      await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: _email, password: _password);
     } on FirebaseAuthException catch (e) {
       var snackBarContent = "";
@@ -51,7 +51,6 @@ class _SigninScreenState extends State<SigninScreen> {
       if (!mounted) {
         return;
       }
-
       if (snackBarContent.isNotEmpty) {
         ScaffoldMessenger.of(context).clearSnackBars();
         ScaffoldMessenger.of(context)
@@ -65,7 +64,9 @@ class _SigninScreenState extends State<SigninScreen> {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+      ),
       body: SingleChildScrollView(
         child: Form(
           key: _formKey,
@@ -114,7 +115,7 @@ class _SigninScreenState extends State<SigninScreen> {
                 ),
                 SizedBox(
                   width: MediaQuery.of(context).size.width,
-                  child: const HorizontalOrLine(
+                  child: const HorizontalLineWithText(
                     title: "or",
                   ),
                 ),

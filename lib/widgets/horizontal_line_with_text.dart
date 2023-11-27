@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:oxford_vocabulary_app/main.dart';
 
-class HorizontalOrLine extends StatelessWidget {
-  const HorizontalOrLine({
+class HorizontalLineWithText extends StatelessWidget {
+  const HorizontalLineWithText({
     super.key,
     this.height = 10,
     required this.title,

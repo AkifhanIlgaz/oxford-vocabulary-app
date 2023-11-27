@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:oxford_vocabulary_app/screens/signin.dart';
+import 'package:oxford_vocabulary_app/screens/signup.dart';
 import 'package:oxford_vocabulary_app/widgets/horizontal_line_with_text.dart';
 
 class SplashScreen extends StatelessWidget {
@@ -30,17 +32,31 @@ class SplashScreen extends StatelessWidget {
                     SizedBox(
                       width: size.width / 2,
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (ctx) {
+                              return const SigninScreen();
+                            }),
+                          );
+                        },
                         child: const Text("Sign In"),
                       ),
                     ),
-                    const HorizontalOrLine(
+                    const HorizontalLineWithText(
                       title: "or",
                     ),
                     SizedBox(
                       width: size.width / 2,
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (ctx) {
+                              return const SignupScreen();
+                            }),
+                          );
+                        },
                         child: const Text("Sign Up"),
                       ),
                     ),
