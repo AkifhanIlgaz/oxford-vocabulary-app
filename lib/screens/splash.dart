@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:oxford_vocabulary_app/product/image/image_items.dart';
 import 'package:oxford_vocabulary_app/product/language/language_items.dart';
 import 'package:oxford_vocabulary_app/screens/signin.dart';
 import 'package:oxford_vocabulary_app/screens/signup.dart';
@@ -20,7 +21,7 @@ class SplashScreen extends StatelessWidget {
           const SizedBox(height: 100),
           Center(
             child: SvgPicture.asset(
-              "assets/vectors/bookReading.svg",
+              ImageItems.splash,
               width: 300,
             ),
           ),

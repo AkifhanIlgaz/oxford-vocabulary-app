@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:oxford_vocabulary_app/main.dart';
 import 'package:oxford_vocabulary_app/models/myUser.dart';
+import 'package:oxford_vocabulary_app/product/image/image_items.dart';
 import 'package:oxford_vocabulary_app/product/language/error_language_items.dart';
 import 'package:oxford_vocabulary_app/product/language/language_items.dart';
 import 'package:oxford_vocabulary_app/screens/signin.dart';
@@ -95,7 +96,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 children: [
                   SizedBox(
                     width: size.width,
-                    child: SvgPicture.asset("assets/vectors/signUp.svg"),
+                    child: SvgPicture.asset(ImageItems.signUp),
                   ),
                   AuthEmailInput(
                     onSaved: onEmailSaved,
