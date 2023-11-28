@@ -5,6 +5,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:oxford_vocabulary_app/main.dart';
 import 'package:oxford_vocabulary_app/models/myUser.dart';
+import 'package:oxford_vocabulary_app/product/language/language_items.dart';
 import 'package:oxford_vocabulary_app/screens/signup.dart';
 import 'package:oxford_vocabulary_app/utilities/configs.dart';
 import 'package:oxford_vocabulary_app/utilities/constants.dart';
@@ -120,14 +121,14 @@ class _SigninScreenState extends State<SigninScreen> {
                         TextButton(
                           onPressed: () {},
                           child: const Text(
-                            "Forgot password ?",
+                            LanguageItems.forgotPasswordText,
                             style: kSmallTextStyle,
                           ),
                         )
                       ],
                     ),
                     CircularButtonWithoutSplash(
-                        buttonText: "Sign In",
+                        buttonText: LanguageItems.signInText,
                         topMargin: 10,
                         filled: true,
                         fillColorInHex: kPrimaryColor,
@@ -166,7 +167,7 @@ class _SigninScreenState extends State<SigninScreen> {
                             ),
                             const SizedBox(width: 10),
                             const Text(
-                              "Sign in with Google",
+                              LanguageItems.googleAuthText,
                               style: TextStyle(
                                 fontFamily: 'Montserrat',
                                 fontSize: 18.0,
@@ -179,7 +180,7 @@ class _SigninScreenState extends State<SigninScreen> {
                       ),
                     ),
                     CircularButtonWithoutSplash(
-                      buttonText: "Create Account",
+                      buttonText: LanguageItems.createAccountText,
                       topMargin: 10,
                       filled: false,
                       fillColorInHex: kPrimaryColor,

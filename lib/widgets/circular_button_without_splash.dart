@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class CircularButtonWithoutSplash extends StatelessWidget {
-  CircularButtonWithoutSplash({
+  const CircularButtonWithoutSplash({
     required this.buttonText,
     required this.topMargin,
     required this.filled,

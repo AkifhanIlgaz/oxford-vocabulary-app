@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:oxford_vocabulary_app/product/language/language_items.dart';
 import 'package:oxford_vocabulary_app/utilities/configs.dart';
 
 class AuthPasswordInput extends StatefulWidget {
   const AuthPasswordInput({
     super.key,
     required this.onSaved,
-    this.hintText = "Enter your password",
+    this.hintText = LanguageItems.passwordInputPlaceholder,
   });
 
   final void Function(String) onSaved;

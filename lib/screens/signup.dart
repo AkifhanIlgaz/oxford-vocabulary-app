@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:oxford_vocabulary_app/main.dart';
 import 'package:oxford_vocabulary_app/models/myUser.dart';
+import 'package:oxford_vocabulary_app/product/language/language_items.dart';
 import 'package:oxford_vocabulary_app/screens/signin.dart';
 import 'package:oxford_vocabulary_app/utilities/configs.dart';
 import 'package:oxford_vocabulary_app/widgets/circular_button_without_splash.dart';
@@ -105,7 +106,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   _gap(),
                   AuthPasswordInput(
                     onSaved: onSecondPasswordSaved,
-                    hintText: "Confirm your password",
+                    hintText: LanguageItems.confirmPasswordPlaceholder,
                   ),
                   _gap(),
                   if (_password != _secondPassword)
@@ -127,17 +128,17 @@ class _SignupScreenState extends State<SignupScreen> {
                     ),
                   _gap(),
                   CircularButtonWithoutSplash(
-                    buttonText: "Sign Up",
+                    buttonText: LanguageItems.signUpText,
                     topMargin: 10,
                     filled: true,
                     fillColorInHex: kPrimaryColor,
                     onTap: onSubmit,
                   ),
                   const HorizontalLineWithText(
-                    title: "Already have an account ?",
+                    title: LanguageItems.alreadyHaveAccountText,
                   ),
                   CircularButtonWithoutSplash(
-                    buttonText: "Sign In",
+                    buttonText: LanguageItems.signInText,
                     topMargin: 10,
                     filled: false,
                     fillColorInHex: kPrimaryColor,
