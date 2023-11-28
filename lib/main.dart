@@ -1,24 +1,16 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:oxford_vocabulary_app/firebase_options.dart';
 import 'package:oxford_vocabulary_app/models/myUser.dart';
 import 'package:oxford_vocabulary_app/screens/splash.dart';
+import 'package:oxford_vocabulary_app/init/firebase.dart';
+import 'package:oxford_vocabulary_app/init/hive.dart';
 import 'package:oxford_vocabulary_app/utilities/configs.dart';
-import "package:path_provider/path_provider.dart" as path_provider;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  Hive.init((await path_provider.getApplicationDocumentsDirectory()).path);
-  Hive.registerAdapter(MyUserAdapter());
-
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-
-  FirebaseAuth.instance.signOut();
+  initHive();
+  initFirebase();
 
   runApp(const VocabularyApp());
 }
@@ -26,8 +18,23 @@ void main() async {
 class VocabularyApp extends StatelessWidget {
   const VocabularyApp({super.key});
 
+  void isLoggedIn() async {
+    final userBox = await Hive.openBox<MyUser>("userBox");
+
+    if (userBox.isEmpty) {
+      print("empty");
+    } else {
+      final currentUser = userBox.get("user");
+
+      print(currentUser!.uid);
+      print(currentUser.email);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    isLoggedIn();
+
     return MaterialApp(
       theme: ThemeData.light().copyWith(
         primaryColor: const Color(0xffff4f18),
