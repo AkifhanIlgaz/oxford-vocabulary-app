@@ -48,11 +48,11 @@ class _AuthPasswordInputState extends State<AuthPasswordInput> {
           keyboardType: TextInputType.text,
           validator: (password) {
             if (password == null || password.trim().isEmpty) {
-              return ErrorLanguageItems.PasswordIsEmpty;
+              return ErrorLanguageItems.passwordIsEmpty;
             }
 
             if (password.trim().length < 6) {
-              return ErrorLanguageItems.PasswordIsShort;
+              return ErrorLanguageItems.passwordIsShort;
             }
 
             return null;
