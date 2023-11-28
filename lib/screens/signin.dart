@@ -5,10 +5,10 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:oxford_vocabulary_app/configs/configs.dart';
 import 'package:oxford_vocabulary_app/main.dart';
 import 'package:oxford_vocabulary_app/screens/signup.dart';
-import 'package:oxford_vocabulary_app/widgets/email_input.dart';
-import 'package:oxford_vocabulary_app/widgets/password_input.dart';
 import 'package:oxford_vocabulary_app/widgets/circular_button_without_splash.dart';
+import 'package:oxford_vocabulary_app/widgets/email_input.dart';
 import 'package:oxford_vocabulary_app/widgets/horizontal_line_with_text.dart';
+import 'package:oxford_vocabulary_app/widgets/password_input.dart';
 import 'package:oxford_vocabulary_app/widgets/snackbar.dart';
 
 class SigninScreen extends StatefulWidget {
@@ -41,8 +41,10 @@ class _SigninScreenState extends State<SigninScreen> {
     _formKey.currentState!.save();
 
     try {
-      await FirebaseAuth.instance
+      final userCred = await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: _email, password: _password);
+
+      print(userCred.user);
     } on FirebaseAuthException catch (e) {
       var snackBarContent = "";
 

@@ -4,10 +4,10 @@ import 'package:flutter_svg/svg.dart';
 import 'package:oxford_vocabulary_app/configs/configs.dart';
 import 'package:oxford_vocabulary_app/main.dart';
 import 'package:oxford_vocabulary_app/screens/signin.dart';
-import 'package:oxford_vocabulary_app/widgets/email_input.dart';
-import 'package:oxford_vocabulary_app/widgets/password_input.dart';
 import 'package:oxford_vocabulary_app/widgets/circular_button_without_splash.dart';
+import 'package:oxford_vocabulary_app/widgets/email_input.dart';
 import 'package:oxford_vocabulary_app/widgets/horizontal_line_with_text.dart';
+import 'package:oxford_vocabulary_app/widgets/password_input.dart';
 import 'package:oxford_vocabulary_app/widgets/snackbar.dart';
 
 class SignupScreen extends StatefulWidget {
@@ -47,8 +47,9 @@ class _SignupScreenState extends State<SignupScreen> {
     _formKey.currentState!.save();
 
     try {
-      await FirebaseAuth.instance
+      final userCred = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: _email, password: _password);
+      print("User Cred $userCred");
     } on FirebaseAuthException catch (e) {
       var snackBarContent = "";
 
@@ -122,7 +123,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     topMargin: 10,
                     filled: true,
                     fillColorInHex: kPrimaryColor,
-                    onTap: () {},
+                    onTap: onSubmit,
                   ),
                   const HorizontalLineWithText(
                     title: "Already have an account ?",
