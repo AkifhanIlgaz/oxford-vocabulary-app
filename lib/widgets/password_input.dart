@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:oxford_vocabulary_app/product/language/error_language_items.dart';
 import 'package:oxford_vocabulary_app/product/language/language_items.dart';
 import 'package:oxford_vocabulary_app/utilities/configs.dart';
 
@@ -47,11 +48,11 @@ class _AuthPasswordInputState extends State<AuthPasswordInput> {
           keyboardType: TextInputType.text,
           validator: (password) {
             if (password == null || password.trim().isEmpty) {
-              return "Please enter a password.";
+              return ErrorLanguageItems.PasswordIsEmpty;
             }
 
             if (password.trim().length < 6) {
-              return "Password must be at least 6 characters long.";
+              return ErrorLanguageItems.PasswordIsShort;
             }
 
             return null;

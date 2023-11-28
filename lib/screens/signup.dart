@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:oxford_vocabulary_app/main.dart';
 import 'package:oxford_vocabulary_app/models/myUser.dart';
+import 'package:oxford_vocabulary_app/product/language/error_language_items.dart';
 import 'package:oxford_vocabulary_app/product/language/language_items.dart';
 import 'package:oxford_vocabulary_app/screens/signin.dart';
 import 'package:oxford_vocabulary_app/utilities/configs.dart';
@@ -63,9 +64,9 @@ class _SignupScreenState extends State<SignupScreen> {
       var snackBarContent = "";
 
       if (e.code == "email-already-in-use") {
-        snackBarContent = "Email is already used by another user.";
+        snackBarContent = ErrorLanguageItems.snackBarEmailIsAlreadyUsed;
       } else if (e.code == "invalid-email") {
-        snackBarContent = "Email is invalid.";
+        snackBarContent = ErrorLanguageItems.snackBarEmailIsInvalid;
       }
 
       if (!mounted) {
