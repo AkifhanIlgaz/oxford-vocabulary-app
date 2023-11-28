@@ -1,51 +1,53 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:oxford_vocabulary_app/models/myUser.dart';
+import 'package:oxford_vocabulary_app/screens/home.dart';
 import 'package:oxford_vocabulary_app/screens/splash.dart';
 import 'package:oxford_vocabulary_app/services/firebase/firebase.dart';
-import 'package:oxford_vocabulary_app/services/hive/hive.dart';
 import 'package:oxford_vocabulary_app/utilities/configs.dart';
 import 'package:oxford_vocabulary_app/utilities/constants.dart';
+import "package:path_provider/path_provider.dart" as path_provider;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  HiveService().init(
-    adapters: [MyUserAdapter()],
-    boxes: [userBoxName],
-  );
+  // HiveService().init(
+  //   adapters: [MyUserAdapter()],
+  // );
+
+  Hive.init((await path_provider.getApplicationDocumentsDirectory()).path);
+  Hive.registerAdapter(MyUserAdapter());
+  await Hive.openBox(userBoxName);
+
   FirebaseService().init();
 
   runApp(const VocabularyApp());
 }
 
-class VocabularyApp extends StatelessWidget {
+class VocabularyApp extends StatefulWidget {
   const VocabularyApp({super.key});
 
-  void isLoggedIn() async {
-    final userBox = await Hive.openBox<MyUser>("userBox");
+  @override
+  State<VocabularyApp> createState() => _VocabularyAppState();
+}
 
-    if (userBox.isEmpty) {
-      print("empty");
-    } else {
-      final currentUser = userBox.get("user");
+class _VocabularyAppState extends State<VocabularyApp> {
+  bool _isLoggedIn = false;
 
-      print(currentUser!.uid);
-      print(currentUser.email);
-    }
+  @override
+  void initState() {
+    super.initState();
+    _isLoggedIn = Hive.box(userBoxName).isNotEmpty;
   }
 
   @override
   Widget build(BuildContext context) {
-    isLoggedIn();
-
     return MaterialApp(
-      theme: ThemeData.light().copyWith(
-        primaryColor: const Color(0xffff4f18),
-        scaffoldBackgroundColor: kBackgroundColor,
-      ),
-      home: const SplashScreen(),
-    );
+        theme: ThemeData.light().copyWith(
+          primaryColor: const Color(0xffff4f18),
+          scaffoldBackgroundColor: kBackgroundColor,
+        ),
+        home: _isLoggedIn ? const HomeScreen() : const SplashScreen());
   }
 }
 

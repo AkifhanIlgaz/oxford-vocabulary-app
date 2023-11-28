@@ -1,13 +1,15 @@
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:oxford_vocabulary_app/models/myUser.dart';
+import 'package:oxford_vocabulary_app/utilities/constants.dart';
 
 class HiveService {
-  String get userBox => "userBox";
+  HiveService() {
+    openUserBox();
+  }
 
   void init({
     List<TypeAdapter>? adapters,
     String? path,
-    required List<String> boxes,
   }) async {
     if (path != null) {
       Hive.init(path);
@@ -15,16 +17,13 @@ class HiveService {
       await Hive.initFlutter();
     }
     adapters?.forEach((TypeAdapter adapter) {
+      adapter.runtimeType;
       Hive.registerAdapter(adapter);
     });
-
-    for (final box in boxes) {
-      await Hive.openBox(box);
-    }
   }
 
   void storeUser(MyUser user) async {
-    final userBox = Hive.box("userBox");
+    final userBox = Hive.box(userBoxName);
     await userBox.put(
       "user",
       user,
@@ -32,13 +31,17 @@ class HiveService {
   }
 
   void deleteUser() async {
-    final userBox = Hive.box("userBox");
+    final userBox = Hive.box(userBoxName);
     await userBox.delete("user");
   }
 
   bool isLoggedIn() {
-    final userBox = Hive.box("userBox");
+    final userBox = Hive.box(userBoxName);
 
     return userBox.isNotEmpty;
   }
+}
+
+void openUserBox() async {
+  await Hive.openBox(userBoxName);
 }

@@ -1,5 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:oxford_vocabulary_app/utilities/constants.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -12,8 +14,9 @@ class HomeScreen extends StatelessWidget {
       ),
       body: SafeArea(
         child: TextButton(
-          onPressed: () {
+          onPressed: () async {
             FirebaseAuth.instance.signOut();
+            await Hive.box(userBoxName).delete("user");
           },
           child: const Text("Log out"),
         ),
