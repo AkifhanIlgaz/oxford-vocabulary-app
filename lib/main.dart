@@ -5,12 +5,14 @@ import 'package:oxford_vocabulary_app/screens/splash.dart';
 import 'package:oxford_vocabulary_app/services/firebase/firebase.dart';
 import 'package:oxford_vocabulary_app/services/hive/hive.dart';
 import 'package:oxford_vocabulary_app/utilities/configs.dart';
+import 'package:oxford_vocabulary_app/utilities/constants.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   HiveService().init(
     adapters: [MyUserAdapter()],
+    boxes: [userBoxName],
   );
   FirebaseService().init();
 
