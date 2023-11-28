@@ -47,7 +47,6 @@ class _SigninScreenState extends State<SigninScreen> {
           .signInWithEmailAndPassword(email: _email, password: _password);
 
       final userBox = await Hive.openBox("userBox");
-
       await userBox.put(
         "user",
         MyUser(uid: userCred.user!.uid, email: userCred.user!.email!),
