@@ -1,6 +1,6 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
-import 'package:oxford_vocabulary_app/configs/configs.dart';
+import 'package:oxford_vocabulary_app/utilities/configs.dart';
 
 class AuthEmailInput extends StatefulWidget {
   const AuthEmailInput({

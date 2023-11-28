@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:oxford_vocabulary_app/configs/configs.dart';
+import 'package:oxford_vocabulary_app/utilities/configs.dart';
 
 class AuthPasswordInput extends StatefulWidget {
   const AuthPasswordInput({

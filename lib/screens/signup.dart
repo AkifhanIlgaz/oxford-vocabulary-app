@@ -1,9 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:oxford_vocabulary_app/configs/configs.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:oxford_vocabulary_app/main.dart';
+import 'package:oxford_vocabulary_app/models/myUser.dart';
 import 'package:oxford_vocabulary_app/screens/signin.dart';
+import 'package:oxford_vocabulary_app/utilities/configs.dart';
 import 'package:oxford_vocabulary_app/widgets/circular_button_without_splash.dart';
 import 'package:oxford_vocabulary_app/widgets/email_input.dart';
 import 'package:oxford_vocabulary_app/widgets/horizontal_line_with_text.dart';
@@ -49,7 +51,13 @@ class _SignupScreenState extends State<SignupScreen> {
     try {
       final userCred = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: _email, password: _password);
-      print("User Cred $userCred");
+
+      var userBox = await Hive.openBox<MyUser>("userBox");
+
+      userBox.put(
+        "user",
+        MyUser(uid: userCred.user!.uid, email: userCred.user!.email!),
+      );
     } on FirebaseAuthException catch (e) {
       var snackBarContent = "";
 

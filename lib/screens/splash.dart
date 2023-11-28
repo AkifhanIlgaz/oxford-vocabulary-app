@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:oxford_vocabulary_app/configs/configs.dart';
+import 'package:oxford_vocabulary_app/utilities/configs.dart';
 import 'package:oxford_vocabulary_app/screens/signin.dart';
 import 'package:oxford_vocabulary_app/screens/signup.dart';
 import 'package:oxford_vocabulary_app/widgets/circular_button_without_splash.dart';
