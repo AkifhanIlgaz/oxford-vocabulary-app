@@ -23,7 +23,11 @@ class HiveService {
 
   bool isLoggedIn() {
     final userBox = Hive.box<MyUser>(userBoxName);
-
     return userBox.isNotEmpty;
+  }
+
+  String? get photoUrl {
+    final userBox = Hive.box<MyUser>(userBoxName);
+    return userBox.get("user")?.photoUrl;
   }
 }

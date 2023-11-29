@@ -1,16 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:oxford_vocabulary_app/main.dart';
+import 'package:oxford_vocabulary_app/product/image/image_items.dart';
 import 'package:oxford_vocabulary_app/product/language/language_items.dart';
 import 'package:oxford_vocabulary_app/utilities/configs.dart';
 
-class HomeAppBar extends StatefulWidget {
+class HomeAppBar extends StatelessWidget {
   const HomeAppBar({super.key});
-
-  @override
-  State<HomeAppBar> createState() => _HomeAppBarState();
-}
-
-class _HomeAppBarState extends State<HomeAppBar> {
-  String? _profileAvatar;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +18,7 @@ class _HomeAppBarState extends State<HomeAppBar> {
             LanguageItems.appName,
             style: kAppBarStyle,
           ),
-          ProfileAvatar()
+          ProfileAvatar(),
         ],
       ),
     );
@@ -37,9 +32,11 @@ class ProfileAvatar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const CircleAvatar(
+    return CircleAvatar(
       radius: 20,
-      backgroundImage: AssetImage("assets/images/profile.png"),
+      backgroundImage: hiveService.photoUrl == null
+          ? const AssetImage(ImageItems.defaultProfileAvatar)
+          : NetworkImage(hiveService.photoUrl!) as ImageProvider,
       backgroundColor: Colors.transparent,
     );
   }

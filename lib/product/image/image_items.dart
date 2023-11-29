@@ -3,5 +3,5 @@ class ImageItems {
   static const signUp = "assets/vectors/signUp.svg";
   static const signIn = "assets/vectors/welcomeBack.svg";
 
-  static const defaultProfileAvatar = "assets/iamages/profile.png";
+  static const defaultProfileAvatar = "assets/images/profile.png";
 }
