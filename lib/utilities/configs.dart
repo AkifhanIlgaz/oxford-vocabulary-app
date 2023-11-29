@@ -44,3 +44,7 @@ const kCardTextStyle = TextStyle(
   fontWeight: FontWeight.w600,
   color: Color(kPrimaryColor),
 );
+
+const kHorizontalPadding = EdgeInsets.symmetric(horizontal: 28);
+
+const kSnackBarRadius = Radius.circular(20);

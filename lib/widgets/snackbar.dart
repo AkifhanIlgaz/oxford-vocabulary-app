@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:oxford_vocabulary_app/main.dart';
+import 'package:oxford_vocabulary_app/utilities/configs.dart';
 
 SnackBar customSnackBar({
   required String content,
@@ -10,7 +10,7 @@ SnackBar customSnackBar({
     backgroundColor: const Color.fromARGB(255, 134, 29, 22),
     shape: const RoundedRectangleBorder(
       borderRadius: BorderRadius.vertical(
-        top: ProjectRadiuses.SnackBarRadius,
+        top: kSnackBarRadius,
       ),
     ),
     duration: duration,

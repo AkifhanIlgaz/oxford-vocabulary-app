@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import "package:hive_flutter/hive_flutter.dart";
@@ -7,10 +6,12 @@ import 'package:oxford_vocabulary_app/models/myUser.dart';
 import 'package:oxford_vocabulary_app/screens/home.dart';
 import 'package:oxford_vocabulary_app/screens/splash.dart';
 import 'package:oxford_vocabulary_app/services/firebase/firebase.dart';
+import 'package:oxford_vocabulary_app/services/hive/hive.dart';
 import 'package:oxford_vocabulary_app/utilities/configs.dart';
 import 'package:oxford_vocabulary_app/utilities/constants.dart';
 
 late final FirebaseService firebaseService;
+late final HiveService hiveService;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,6 +28,7 @@ void main() async {
   await Hive.openBox<MyUser>(userBoxName);
 
   firebaseService = FirebaseService();
+  hiveService = HiveService();
 
   runApp(const VocabularyApp());
 }
@@ -47,7 +49,7 @@ class _VocabularyAppState extends State<VocabularyApp> {
           scaffoldBackgroundColor: kBackgroundColor,
         ),
         home: StreamBuilder(
-            stream: FirebaseAuth.instance.authStateChanges(),
+            stream: firebaseService.auth.authStateChanges(),
             builder: (ctx, snapshot) {
               if (snapshot.hasData) {
                 return const HomeScreen();
@@ -56,17 +58,4 @@ class _VocabularyAppState extends State<VocabularyApp> {
               }
             }));
   }
-}
-
-class ProjectColors {
-  static final mainColor = Colors.amber[900];
-  static const AuthBaseColor = Colors.grey;
-}
-
-class ProjectPaddings {
-  static const ScreenHorizontalPadding = EdgeInsets.symmetric(horizontal: 28);
-}
-
-class ProjectRadiuses {
-  static const SnackBarRadius = const Radius.circular(20);
 }

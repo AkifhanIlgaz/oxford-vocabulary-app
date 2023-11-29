@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:oxford_vocabulary_app/services/hive/hive.dart';
+import 'package:oxford_vocabulary_app/main.dart';
 import 'package:oxford_vocabulary_app/widgets/home_appbar.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -13,8 +13,10 @@ class HomeScreen extends StatelessWidget {
           children: [
             const HomeAppBar(),
             TextButton(
-              onPressed: () {
-                HiveService().deleteUser();
+              onPressed: () async {
+                await firebaseService.auth.signOut();
+
+                
               },
               child: const Text("Log out"),
             ),

@@ -5,14 +5,14 @@ part 'myUser.g.dart';
 @HiveType(typeId: 1)
 class MyUser {
   MyUser({
-    required this.uid,
     required this.email,
+    this.uid,
     this.displayName,
-    this.profileImageUrl,
+    this.photoUrl,
   });
 
   @HiveField(0)
-  final String uid;
+  String? uid;
 
   @HiveField(1)
   final String email;
@@ -21,5 +21,13 @@ class MyUser {
   final String? displayName;
 
   @HiveField(3)
-  final String? profileImageUrl;
+  final String? photoUrl;
+
+  Map<String, dynamic> toJson() {
+    return {
+      "email": email,
+      "displayName": displayName,
+      "photoUrl": photoUrl,
+    };
+  }
 }

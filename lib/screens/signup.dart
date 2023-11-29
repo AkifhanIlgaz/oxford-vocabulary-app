@@ -1,9 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:oxford_vocabulary_app/main.dart';
-import 'package:oxford_vocabulary_app/models/myUser.dart';
 import 'package:oxford_vocabulary_app/product/image/image_items.dart';
 import 'package:oxford_vocabulary_app/product/language/language_items.dart';
 import 'package:oxford_vocabulary_app/screens/signin.dart';
@@ -51,15 +49,8 @@ class _SignupScreenState extends State<SignupScreen> {
     _formKey.currentState!.save();
 
     try {
-      final userCred = await FirebaseAuth.instance
-          .createUserWithEmailAndPassword(email: _email, password: _password);
-
-      var userBox = await Hive.openBox<MyUser>("userBox");
-
-      userBox.put(
-        "user",
-        MyUser(uid: userCred.user!.uid, email: userCred.user!.email!),
-      );
+      firebaseService.signUp(
+          email: _email, password: _password, context: context);
     } on FirebaseAuthException catch (e) {
       var snackBarContent = "";
 
@@ -91,7 +82,7 @@ class _SignupScreenState extends State<SignupScreen> {
           child: Form(
             key: _formKey,
             child: Padding(
-              padding: ProjectPaddings.ScreenHorizontalPadding,
+              padding: kHorizontalPadding,
               child: Column(
                 children: [
                   SizedBox(

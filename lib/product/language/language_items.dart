@@ -5,6 +5,7 @@ class LanguageItems {
 
   static const signInText = "Sign In";
   static const signUpText = "Sign Up";
+  static const signOutText = "Sign Out";
   static const googleAuthText = "Sign in with Google";
   static const createAccountText = "Create Account";
   static const forgotPasswordText = "Forgot password ?";

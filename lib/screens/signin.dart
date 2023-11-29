@@ -71,7 +71,7 @@ class _SigninScreenState extends State<SigninScreen> {
             child: Form(
               key: _formKey,
               child: Padding(
-                padding: ProjectPaddings.ScreenHorizontalPadding,
+                padding: kHorizontalPadding,
                 child: Column(
                   children: [
                     SizedBox(

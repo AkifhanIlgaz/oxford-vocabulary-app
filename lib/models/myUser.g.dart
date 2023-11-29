@@ -17,10 +17,10 @@ class MyUserAdapter extends TypeAdapter<MyUser> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return MyUser(
-      uid: fields[0] as String,
       email: fields[1] as String,
+      uid: fields[0] as String?,
       displayName: fields[2] as String?,
-      profileImageUrl: fields[3] as String?,
+      photoUrl: fields[3] as String?,
     );
   }
 
@@ -35,7 +35,7 @@ class MyUserAdapter extends TypeAdapter<MyUser> {
       ..writeByte(2)
       ..write(obj.displayName)
       ..writeByte(3)
-      ..write(obj.profileImageUrl);
+      ..write(obj.photoUrl);
   }
 
   @override
