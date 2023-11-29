@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:oxford_vocabulary_app/main.dart';
 import 'package:oxford_vocabulary_app/models/myUser.dart';
 import 'package:oxford_vocabulary_app/product/language/errors/firebase_errors.dart';
-import 'package:oxford_vocabulary_app/screens/home.dart';
+import 'package:oxford_vocabulary_app/product/navigation/navigation.dart';
 import 'package:oxford_vocabulary_app/widgets/snackbar.dart';
 
 class FirebaseService {
@@ -13,7 +13,6 @@ class FirebaseService {
 
   String get usersCollection => "users";
 
-  // TODO: Sign in, sign up, sign out
   void signIn({
     required String email,
     required String password,
@@ -25,20 +24,10 @@ class FirebaseService {
         password: password,
       );
 
-      // final user = await firestore
-      //     .collection(usersCollection)
-      //     .(MyUser(email: email).toJson());
-
       if (!context.mounted) {
         return;
       }
-
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (ctx) => const HomeScreen(),
-        ),
-      );
+      goHome(context);
     } on FirebaseAuthException catch (error) {
       _showError(context, error.code);
     }
@@ -75,15 +64,21 @@ class FirebaseService {
         return;
       }
 
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (ctx) => const HomeScreen(),
-        ),
-      );
+      goHome(context);
     } on FirebaseAuthException catch (error) {
       _showError(context, error.code);
     }
+  }
+
+  void signOut(BuildContext context) async {
+    await auth.signOut();
+    hiveService.deleteUser();
+
+    if (!context.mounted) {
+      return;
+    }
+
+    goSplash(context);
   }
 
   void _showError(BuildContext context, String errorCode) {
@@ -91,5 +86,4 @@ class FirebaseService {
     ScaffoldMessenger.of(context).showSnackBar(customSnackBar(
         content: firebaseErrors[errorCode] ?? "Unhandled error"));
   }
-  // TODO: Add user to firestore
 }

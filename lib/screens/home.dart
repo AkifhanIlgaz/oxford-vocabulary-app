@@ -13,11 +13,7 @@ class HomeScreen extends StatelessWidget {
           children: [
             const HomeAppBar(),
             TextButton(
-              onPressed: () async {
-                await firebaseService.auth.signOut();
-
-                
-              },
+              onPressed: () => firebaseService.signOut(context),
               child: const Text("Log out"),
             ),
           ],
