@@ -13,4 +13,6 @@ class LanguageItems {
   static const passwordInputPlaceholder = "Enter your password";
   static const confirmPasswordPlaceholder = "Confirm your password";
   static const alreadyHaveAccountText = "Already have an account ?";
+
+  static const appName = "Oxford Vocab";
 }

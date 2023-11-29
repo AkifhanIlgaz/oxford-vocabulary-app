@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hive_flutter/hive_flutter.dart';
+import 'package:hive/hive.dart';
 import 'package:oxford_vocabulary_app/models/myUser.dart';
 import 'package:oxford_vocabulary_app/screens/home.dart';
 import 'package:oxford_vocabulary_app/screens/splash.dart';

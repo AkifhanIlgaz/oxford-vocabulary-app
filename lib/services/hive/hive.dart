@@ -1,4 +1,4 @@
-import 'package:hive_flutter/hive_flutter.dart';
+import 'package:hive/hive.dart';
 import 'package:oxford_vocabulary_app/models/myUser.dart';
 import 'package:oxford_vocabulary_app/utilities/constants.dart';
 
@@ -9,13 +9,9 @@ class HiveService {
 
   void init({
     List<TypeAdapter>? adapters,
-    String? path,
+    required String path,
   }) async {
-    if (path != null) {
-      Hive.init(path);
-    } else {
-      await Hive.initFlutter();
-    }
+    Hive.init(path);
     adapters?.forEach((TypeAdapter adapter) {
       adapter.runtimeType;
       Hive.registerAdapter(adapter);

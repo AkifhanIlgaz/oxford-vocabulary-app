@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:hive_flutter/hive_flutter.dart';
+import 'package:hive/hive.dart';
 import 'package:oxford_vocabulary_app/main.dart';
 import 'package:oxford_vocabulary_app/models/myUser.dart';
 import 'package:oxford_vocabulary_app/product/image/image_items.dart';
@@ -144,7 +144,7 @@ class _SigninScreenState extends State<SigninScreen> {
                     const SizedBox(height: 10),
                     InkWell(
                       borderRadius: BorderRadius.circular(20),
-                      onTap: () {},
+                      onTap: signInWithGoogle,
                       child: Container(
                         width: 300,
                         padding: const EdgeInsets.symmetric(
