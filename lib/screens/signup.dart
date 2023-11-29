@@ -5,7 +5,6 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:oxford_vocabulary_app/main.dart';
 import 'package:oxford_vocabulary_app/models/myUser.dart';
 import 'package:oxford_vocabulary_app/product/image/image_items.dart';
-import 'package:oxford_vocabulary_app/product/language/error_language_items.dart';
 import 'package:oxford_vocabulary_app/product/language/language_items.dart';
 import 'package:oxford_vocabulary_app/screens/signin.dart';
 import 'package:oxford_vocabulary_app/utilities/configs.dart';
@@ -64,11 +63,12 @@ class _SignupScreenState extends State<SignupScreen> {
     } on FirebaseAuthException catch (e) {
       var snackBarContent = "";
 
-      if (e.code == "email-already-in-use") {
-        snackBarContent = ErrorLanguageItems.snackBarEmailIsAlreadyUsed;
-      } else if (e.code == "invalid-email") {
-        snackBarContent = ErrorLanguageItems.snackBarEmailIsInvalid;
-      }
+      // TODO: Create sign up function in firebase service class
+      // if (e.code == "email-already-in-use") {
+      //   snackBarContent = ErrorLanguageItems.snackBarEmailIsAlreadyUsed;
+      // } else if (e.code == "invalid-email") {
+      //   snackBarContent = ErrorLanguageItems.snackBarEmailIsInvalid;
+      // }
 
       if (!mounted) {
         return;

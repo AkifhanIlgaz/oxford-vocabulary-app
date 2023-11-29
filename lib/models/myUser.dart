@@ -4,11 +4,12 @@ part 'myUser.g.dart';
 
 @HiveType(typeId: 1)
 class MyUser {
-  MyUser(
-      {required this.uid,
-      required this.email,
-      this.displayName,
-      this.profileImageUrl});
+  MyUser({
+    required this.uid,
+    required this.email,
+    this.displayName,
+    this.profileImageUrl,
+  });
 
   @HiveField(0)
   final String uid;

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:oxford_vocabulary_app/services/hive/hive.dart';
 import 'package:oxford_vocabulary_app/widgets/home_appbar.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -6,11 +7,17 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: SafeArea(
         child: Column(
           children: [
-            HomeAppBar(),
+            const HomeAppBar(),
+            TextButton(
+              onPressed: () {
+                HiveService().deleteUser();
+              },
+              child: const Text("Log out"),
+            ),
           ],
         ),
       ),

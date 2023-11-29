@@ -1,25 +1,32 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
+import "package:hive_flutter/hive_flutter.dart";
+import 'package:oxford_vocabulary_app/firebase_options.dart';
 import 'package:oxford_vocabulary_app/models/myUser.dart';
 import 'package:oxford_vocabulary_app/screens/home.dart';
 import 'package:oxford_vocabulary_app/screens/splash.dart';
 import 'package:oxford_vocabulary_app/services/firebase/firebase.dart';
 import 'package:oxford_vocabulary_app/utilities/configs.dart';
 import 'package:oxford_vocabulary_app/utilities/constants.dart';
-import "package:path_provider/path_provider.dart" as path_provider;
+
+late final FirebaseService firebaseService;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   // HiveService().init(
   //   adapters: [MyUserAdapter()],
   // );
 
-  Hive.init((await path_provider.getApplicationDocumentsDirectory()).path);
+  await Hive.initFlutter();
   Hive.registerAdapter(MyUserAdapter());
-  await Hive.openBox(userBoxName);
+  await Hive.openBox<MyUser>(userBoxName);
 
-  FirebaseService().init();
+  firebaseService = FirebaseService();
 
   runApp(const VocabularyApp());
 }
@@ -32,14 +39,6 @@ class VocabularyApp extends StatefulWidget {
 }
 
 class _VocabularyAppState extends State<VocabularyApp> {
-  bool _isLoggedIn = false;
-
-  @override
-  void initState() {
-    super.initState();
-    _isLoggedIn = Hive.box(userBoxName).isNotEmpty;
-  }
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -47,7 +46,15 @@ class _VocabularyAppState extends State<VocabularyApp> {
           primaryColor: const Color(0xffff4f18),
           scaffoldBackgroundColor: kBackgroundColor,
         ),
-        home: _isLoggedIn ? const HomeScreen() : const SplashScreen());
+        home: StreamBuilder(
+            stream: FirebaseAuth.instance.authStateChanges(),
+            builder: (ctx, snapshot) {
+              if (snapshot.hasData) {
+                return const HomeScreen();
+              } else {
+                return const SplashScreen();
+              }
+            }));
   }
 }
 

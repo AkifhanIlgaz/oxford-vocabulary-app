@@ -2,20 +2,15 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:hive/hive.dart';
 import 'package:oxford_vocabulary_app/main.dart';
-import 'package:oxford_vocabulary_app/models/myUser.dart';
 import 'package:oxford_vocabulary_app/product/image/image_items.dart';
-import 'package:oxford_vocabulary_app/product/language/error_language_items.dart';
 import 'package:oxford_vocabulary_app/product/language/language_items.dart';
 import 'package:oxford_vocabulary_app/screens/signup.dart';
 import 'package:oxford_vocabulary_app/utilities/configs.dart';
-import 'package:oxford_vocabulary_app/utilities/constants.dart';
 import 'package:oxford_vocabulary_app/widgets/circular_button_without_splash.dart';
 import 'package:oxford_vocabulary_app/widgets/email_input.dart';
 import 'package:oxford_vocabulary_app/widgets/horizontal_line_with_text.dart';
 import 'package:oxford_vocabulary_app/widgets/password_input.dart';
-import 'package:oxford_vocabulary_app/widgets/snackbar.dart';
 
 class SigninScreen extends StatefulWidget {
   const SigninScreen({super.key});
@@ -46,35 +41,8 @@ class _SigninScreenState extends State<SigninScreen> {
     _formKey.currentState!.validate();
     _formKey.currentState!.save();
 
-    try {
-      final userCred = await FirebaseAuth.instance
-          .signInWithEmailAndPassword(email: _email, password: _password);
-
-      final userBox = Hive.box(userBoxName);
-      print(Hive.isBoxOpen(userBoxName));
-
-      await userBox.put(
-        "user",
-        MyUser(uid: userCred.user!.uid, email: userCred.user!.email!),
-      );
-    } on FirebaseAuthException catch (e) {
-      var snackBarContent = "";
-
-      if (e.code == "user-not-found") {
-        snackBarContent = ErrorLanguageItems.snackBarUserNotFound;
-      } else if (e.code == "wrong-password") {
-        snackBarContent = ErrorLanguageItems.snackBarWrongPassword;
-      }
-
-      if (!mounted) {
-        return;
-      }
-      if (snackBarContent.isNotEmpty) {
-        ScaffoldMessenger.of(context).clearSnackBars();
-        ScaffoldMessenger.of(context)
-            .showSnackBar(customSnackBar(content: snackBarContent));
-      }
-    }
+    firebaseService.signIn(
+        email: _email, password: _password, context: context);
   }
 
   void signInWithGoogle() async {
@@ -130,11 +98,12 @@ class _SigninScreenState extends State<SigninScreen> {
                       ],
                     ),
                     CircularButtonWithoutSplash(
-                        buttonText: LanguageItems.signInText,
-                        topMargin: 10,
-                        filled: true,
-                        fillColorInHex: kPrimaryColor,
-                        onTap: onSubmit),
+                      buttonText: LanguageItems.signInText,
+                      topMargin: 10,
+                      filled: true,
+                      fillColorInHex: kPrimaryColor,
+                      onTap: onSubmit,
+                    ),
                     SizedBox(
                       width: MediaQuery.of(context).size.width,
                       child: const HorizontalLineWithText(

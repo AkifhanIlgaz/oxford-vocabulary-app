@@ -19,7 +19,7 @@ class HiveService {
   }
 
   void storeUser(MyUser user) async {
-    final userBox = Hive.box(userBoxName);
+    final userBox = Hive.box<MyUser>(userBoxName);
     await userBox.put(
       "user",
       user,
@@ -27,12 +27,12 @@ class HiveService {
   }
 
   void deleteUser() async {
-    final userBox = Hive.box(userBoxName);
+    final userBox = Hive.box<MyUser>(userBoxName);
     await userBox.delete("user");
   }
 
   bool isLoggedIn() {
-    final userBox = Hive.box(userBoxName);
+    final userBox = Hive.box<MyUser>(userBoxName);
 
     return userBox.isNotEmpty;
   }
