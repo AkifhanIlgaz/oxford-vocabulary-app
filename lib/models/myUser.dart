@@ -15,7 +15,7 @@ class MyUser {
   String? uid;
 
   @HiveField(1)
-  final String email;
+  final String? email;
 
   @HiveField(2)
   final String? displayName;

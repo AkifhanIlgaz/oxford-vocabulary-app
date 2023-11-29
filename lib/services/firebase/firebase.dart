@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:oxford_vocabulary_app/main.dart';
 import 'package:oxford_vocabulary_app/models/myUser.dart';
 import 'package:oxford_vocabulary_app/product/language/errors/firebase_errors.dart';
@@ -19,10 +20,20 @@ class FirebaseService {
     required BuildContext context,
   }) async {
     try {
-      final userCredentials = await auth.signInWithEmailAndPassword(
+      final userInfo = (await auth.signInWithEmailAndPassword(
         email: email,
         password: password,
+      ))
+          .user;
+
+      var user = MyUser(
+        uid: userInfo?.uid,
+        email: email,
+        displayName: userInfo?.displayName,
+        photoUrl: userInfo?.photoURL,
       );
+
+      hiveService.storeUser(user);
 
       if (!context.mounted) {
         return;
@@ -31,6 +42,39 @@ class FirebaseService {
     } on FirebaseAuthException catch (error) {
       _showError(context, error.code);
     }
+  }
+
+  void signInWithGoogle() async {
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+    final GoogleSignInAuthentication? googleAuth =
+        await googleUser?.authentication;
+
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth?.accessToken,
+      idToken: googleAuth?.idToken,
+    );
+
+    final userCredentials =
+        await FirebaseAuth.instance.signInWithCredential(credential);
+
+    final userInfo = userCredentials.user;
+    var user = MyUser(
+      email: userInfo?.email,
+      displayName: userInfo?.displayName,
+      photoUrl: userInfo?.photoURL,
+    );
+
+    if (userCredentials.additionalUserInfo!.isNewUser) {
+      await firestore
+          .collection(usersCollection)
+          .doc(userInfo?.uid)
+          .set(user.toJson());
+    }
+
+    user.uid = userInfo?.uid;
+
+    hiveService.storeUser(user);
   }
 
   void signUp({
@@ -71,6 +115,7 @@ class FirebaseService {
   }
 
   void signOut(BuildContext context) async {
+    await GoogleSignIn().signOut();
     await auth.signOut();
     hiveService.deleteUser();
 

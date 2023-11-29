@@ -33,29 +33,19 @@ void main() async {
   runApp(const VocabularyApp());
 }
 
-class VocabularyApp extends StatefulWidget {
+class VocabularyApp extends StatelessWidget {
   const VocabularyApp({super.key});
 
   @override
-  State<VocabularyApp> createState() => _VocabularyAppState();
-}
-
-class _VocabularyAppState extends State<VocabularyApp> {
-  @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        theme: ThemeData.light().copyWith(
-          primaryColor: const Color(0xffff4f18),
-          scaffoldBackgroundColor: kBackgroundColor,
-        ),
-        home: StreamBuilder(
-            stream: firebaseService.auth.authStateChanges(),
-            builder: (ctx, snapshot) {
-              if (snapshot.hasData) {
-                return const HomeScreen();
-              } else {
-                return const SplashScreen();
-              }
-            }));
+      theme: ThemeData.light().copyWith(
+        primaryColor: const Color(0xffff4f18),
+        scaffoldBackgroundColor: kBackgroundColor,
+      ),
+      home: firebaseService.auth.currentUser == null
+          ? const SplashScreen()
+          : const HomeScreen(),
+    );
   }
 }
