@@ -4,21 +4,28 @@ import 'package:oxford_vocabulary_app/product/image/image_items.dart';
 import 'package:oxford_vocabulary_app/product/language/language_items.dart';
 import 'package:oxford_vocabulary_app/utilities/configs.dart';
 
-class HomeAppBar extends StatelessWidget {
-  const HomeAppBar({super.key});
+class CustomAppBar extends StatelessWidget {
+  const CustomAppBar({
+    super.key,
+    this.isTextWhite = false,
+  });
+
+  final bool isTextWhite;
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
             LanguageItems.appName,
-            style: kAppBarStyle,
+            style: isTextWhite
+                ? kAppBarStyle.copyWith(color: kWhite)
+                : kAppBarStyle,
           ),
-          ProfileAvatar(),
+          const ProfileAvatar(),
         ],
       ),
     );
@@ -34,6 +41,7 @@ class ProfileAvatar extends StatelessWidget {
   Widget build(BuildContext context) {
     return CircleAvatar(
       radius: 20,
+      // TODO: Listen photoUrl
       backgroundImage: hiveService.photoUrl == null
           ? const AssetImage(ImageItems.defaultProfileAvatar)
           : NetworkImage(hiveService.photoUrl!) as ImageProvider,

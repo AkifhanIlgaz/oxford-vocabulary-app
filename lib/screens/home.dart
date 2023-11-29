@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:oxford_vocabulary_app/main.dart';
-import 'package:oxford_vocabulary_app/widgets/home_appbar.dart';
+import 'package:oxford_vocabulary_app/product/language/language_items.dart';
+import 'package:oxford_vocabulary_app/widgets/custom_app_bar.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -11,10 +12,10 @@ class HomeScreen extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            const HomeAppBar(),
+            const CustomAppBar(),
             TextButton(
               onPressed: () => firebaseService.signOut(context),
-              child: const Text("Log out"),
+              child: const Text(LanguageItems.signOutText),
             ),
           ],
         ),
