@@ -5,10 +5,12 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:oxford_vocabulary_app/main.dart';
 import 'package:oxford_vocabulary_app/models/myUser.dart';
 import 'package:oxford_vocabulary_app/product/language/errors/firebase_errors.dart';
-import 'package:oxford_vocabulary_app/product/navigation/navigation.dart';
+import 'package:oxford_vocabulary_app/product/navigation/navigator_manager.dart';
+import 'package:oxford_vocabulary_app/screens/home.dart';
+import 'package:oxford_vocabulary_app/screens/splash.dart';
 import 'package:oxford_vocabulary_app/widgets/snackbar.dart';
 
-class FirebaseService {
+class FirebaseService with NavigatorManager {
   final FirebaseAuth auth = FirebaseAuth.instance;
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
@@ -38,7 +40,8 @@ class FirebaseService {
       if (!context.mounted) {
         return;
       }
-      goHome(context);
+
+      navigateToReplacement(context, const HomeScreen());
     } on FirebaseAuthException catch (error) {
       _showError(context, error.code);
     }
@@ -108,7 +111,7 @@ class FirebaseService {
         return;
       }
 
-      goHome(context);
+      navigateToReplacement(context, const HomeScreen());
     } on FirebaseAuthException catch (error) {
       _showError(context, error.code);
     }
@@ -123,7 +126,7 @@ class FirebaseService {
       return;
     }
 
-    goSplash(context);
+    navigateToReplacement(context, const SplashScreen());
   }
 
   void _showError(BuildContext context, String errorCode) {
