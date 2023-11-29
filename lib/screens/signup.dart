@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:oxford_vocabulary_app/main.dart';
@@ -10,7 +9,6 @@ import 'package:oxford_vocabulary_app/widgets/circular_button_without_splash.dar
 import 'package:oxford_vocabulary_app/widgets/email_input.dart';
 import 'package:oxford_vocabulary_app/widgets/horizontal_line_with_text.dart';
 import 'package:oxford_vocabulary_app/widgets/password_input.dart';
-import 'package:oxford_vocabulary_app/widgets/snackbar.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -48,28 +46,8 @@ class _SignupScreenState extends State<SignupScreen> {
     _formKey.currentState!.validate();
     _formKey.currentState!.save();
 
-    try {
-      firebaseService.signUp(
-          email: _email, password: _password, context: context);
-    } on FirebaseAuthException catch (e) {
-      var snackBarContent = "";
-
-      // TODO: Create sign up function in firebase service class
-      // if (e.code == "email-already-in-use") {
-      //   snackBarContent = ErrorLanguageItems.snackBarEmailIsAlreadyUsed;
-      // } else if (e.code == "invalid-email") {
-      //   snackBarContent = ErrorLanguageItems.snackBarEmailIsInvalid;
-      // }
-
-      if (!mounted) {
-        return;
-      }
-      if (snackBarContent.isNotEmpty) {
-        ScaffoldMessenger.of(context).clearSnackBars();
-        ScaffoldMessenger.of(context)
-            .showSnackBar(customSnackBar(content: snackBarContent));
-      }
-    }
+    firebaseService.signUp(
+        email: _email, password: _password, context: context);
   }
 
   @override
