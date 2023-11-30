@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 const kPrimaryColor = 0xffff4f18;
 const kDismissColor = Colors.red;
 const kLightBlack = Colors.black12;
-const kBlack = Colors.black87;
+const kBlack = Colors.black;
 const kWhite = Colors.white;
 const kTransparent = Colors.transparent;
 
@@ -51,4 +51,4 @@ const kCardTextStyle = TextStyle(
 const kHorizontalPadding = EdgeInsets.symmetric(horizontal: 28);
 const kSnackBarRadius = Radius.circular(20);
 const double kAppBarAvatarSize = 20;
-const double kDrawerAvatarSize = 50;
+const double kDrawerAvatarSize = 60;
