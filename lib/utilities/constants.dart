@@ -26,6 +26,7 @@ final List<DrawerItem> settingsItems = [
   ),
   DrawerItem(
     icon: Icons.logout_outlined,
+    color: const Color.fromARGB(255, 160, 29, 20),
     title: "Sign Out",
     onTap: () {},
   ),

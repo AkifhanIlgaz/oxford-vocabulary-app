@@ -48,8 +48,13 @@ class CustomDrawer extends StatelessWidget {
                   physics: const NeverScrollableScrollPhysics(),
                   itemBuilder: (ctx, index) {
                     final item = settingsItems[index];
+
                     return DrawerSettingsItem(
-                        icon: item.icon, title: item.title, onTap: item.onTap);
+                      icon: item.icon,
+                      title: item.title,
+                      onTap: item.onTap,
+                      color: item.color,
+                    );
                   },
                   separatorBuilder: (context, index) => const LineSeparator(
                         padding: 12,
