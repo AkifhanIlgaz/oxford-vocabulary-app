@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:oxford_vocabulary_app/main.dart';
 import 'package:oxford_vocabulary_app/product/language/language_items.dart';
 import 'package:oxford_vocabulary_app/widgets/custom_drawer.dart';
 import 'package:oxford_vocabulary_app/widgets/my_app_bar.dart';
+import 'package:oxford_vocabulary_app/widgets/word_card.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
@@ -22,12 +22,9 @@ class HomeScreen extends StatelessWidget {
         appBarTitle: LanguageItems.appName,
       ),
       endDrawer: const CustomDrawer(),
-      body: Column(
+      body: const Column(
         children: [
-          TextButton(
-            onPressed: () => firebaseService.signOut(context),
-            child: const Text(LanguageItems.signOutText),
-          ),
+          WordCard(),
         ],
       ),
     );
