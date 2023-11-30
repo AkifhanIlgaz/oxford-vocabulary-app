@@ -19,7 +19,7 @@ class MyAppBar extends AppBar {
               padding: const EdgeInsets.only(right: 16),
               child: InkWell(
                 onTap: openEndDrawer,
-                child: const ProfileAvatar(),
+                child: const ProfileAvatar(size: kAppBarAvatarSize),
               ),
             ),
           ],

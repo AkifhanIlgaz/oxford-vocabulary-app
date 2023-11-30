@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:oxford_vocabulary_app/main.dart';
 import 'package:oxford_vocabulary_app/product/language/language_items.dart';
+import 'package:oxford_vocabulary_app/utilities/configs.dart';
 import 'package:oxford_vocabulary_app/widgets/my_app_bar.dart';
+import 'package:oxford_vocabulary_app/widgets/profile_avatar.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
@@ -25,7 +27,15 @@ class HomeScreen extends StatelessWidget {
           // width: MediaQuery.of(context).size.width / 1.5,
           backgroundColor: Colors.black,
 
-          child: Column(),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ProfileAvatar(
+                size: kDrawerAvatarSize,
+              ),
+              Spacer()
+            ],
+          ),
         ),
         body: Column(
           children: [

@@ -49,5 +49,6 @@ const kCardTextStyle = TextStyle(
 );
 
 const kHorizontalPadding = EdgeInsets.symmetric(horizontal: 28);
-
 const kSnackBarRadius = Radius.circular(20);
+const double kAppBarAvatarSize = 20;
+const double kDrawerAvatarSize = 50;
