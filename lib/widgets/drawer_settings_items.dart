@@ -18,6 +18,7 @@ class DrawerSettingsItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
+      onTap: onTap,
       child: Row(
         children: [
           Icon(

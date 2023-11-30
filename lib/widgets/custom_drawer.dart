@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:oxford_vocabulary_app/main.dart';
+import 'package:oxford_vocabulary_app/models/drawer_items.dart';
 import 'package:oxford_vocabulary_app/utilities/configs.dart';
-import 'package:oxford_vocabulary_app/utilities/constants.dart';
 import 'package:oxford_vocabulary_app/widgets/drawer_settings_items.dart';
 import 'package:oxford_vocabulary_app/widgets/line_separator.dart';
 import 'package:oxford_vocabulary_app/widgets/profile_avatar.dart';
@@ -11,6 +11,8 @@ class CustomDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final items = SettingsItems(context).settingsItems;
+
     return Drawer(
       width: MediaQuery.of(context).size.width / 1.5,
       backgroundColor: kBlack,
@@ -33,8 +35,9 @@ class CustomDrawer extends StatelessWidget {
                       height: 24,
                     ),
                     Text(
-                      hiveService.displayName ?? "Default",
+                      hiveService.displayName ?? "Mohit Singh",
                       style: kAppBarStyle.copyWith(
+                        fontWeight: FontWeight.w400,
                         color: kWhite,
                       ),
                     ),
@@ -47,7 +50,7 @@ class CustomDrawer extends StatelessWidget {
                   padding: const EdgeInsets.only(top: 30),
                   physics: const NeverScrollableScrollPhysics(),
                   itemBuilder: (ctx, index) {
-                    final item = settingsItems[index];
+                    final item = items[index];
 
                     return DrawerSettingsItem(
                       icon: item.icon,
@@ -60,7 +63,7 @@ class CustomDrawer extends StatelessWidget {
                         padding: 12,
                         color: kWhite,
                       ),
-                  itemCount: settingsItems.length),
+                  itemCount: items.length),
             )
           ],
         ),
