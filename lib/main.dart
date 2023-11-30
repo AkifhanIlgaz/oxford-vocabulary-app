@@ -45,7 +45,7 @@ class VocabularyApp extends StatelessWidget {
       ),
       home: firebaseService.auth.currentUser == null
           ? const SplashScreen()
-          : const HomeScreen(),
+          : HomeScreen(),
     );
   }
 }

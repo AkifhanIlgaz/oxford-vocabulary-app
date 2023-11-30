@@ -41,7 +41,7 @@ class FirebaseService with NavigatorManager {
         return;
       }
 
-      navigateToReplacement(context, const HomeScreen());
+      navigateToReplacement(context, HomeScreen());
     } on FirebaseAuthException catch (error) {
       _showError(context, error.code);
     }
@@ -111,7 +111,7 @@ class FirebaseService with NavigatorManager {
         return;
       }
 
-      navigateToReplacement(context, const HomeScreen());
+      navigateToReplacement(context, HomeScreen());
     } on FirebaseAuthException catch (error) {
       _showError(context, error.code);
     }

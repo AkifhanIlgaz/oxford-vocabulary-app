@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 const kPrimaryColor = 0xffff4f18;
 const kDismissColor = Colors.red;
 const kLightBlack = Colors.black12;
+const kBlack = Colors.black87;
 const kWhite = Colors.white;
+const kTransparent = Colors.transparent;
 
 const kSmallTextStyle = TextStyle(
   fontFamily: 'Montserrat',
