@@ -30,4 +30,9 @@ class HiveService {
     final userBox = Hive.box<MyUser>(userBoxName);
     return userBox.get("user")?.photoUrl;
   }
+
+  String? get displayName {
+    final userBox = Hive.box<MyUser>(userBoxName);
+    return userBox.get("user")?.displayName;
+  }
 }
