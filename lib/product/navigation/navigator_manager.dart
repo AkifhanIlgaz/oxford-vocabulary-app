@@ -9,4 +9,13 @@ mixin NavigatorManager {
       ),
     );
   }
+
+  void navigateTo(BuildContext context, Widget to) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (ctx) => to,
+      ),
+    );
+  }
 }

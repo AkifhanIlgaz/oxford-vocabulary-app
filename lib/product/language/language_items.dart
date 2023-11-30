@@ -16,4 +16,9 @@ class LanguageItems {
   static const alreadyHaveAccountText = "Already have an account ?";
 
   static const appName = "Oxford Vocab";
+
+  static const drawerLiked = "Liked";
+  static const drawerLanguages = "Languages";
+  static const drawerAbout = "About";
+  static const drawerLicenses = "Licenses";
 }
