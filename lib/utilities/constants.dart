@@ -5,18 +5,28 @@ const userBoxName = "userBox";
 
 final List<DrawerItem> settingsItems = [
   DrawerItem(
-    icon: Icons.heart_broken_sharp,
+    icon: Icons.favorite_outline_rounded,
     title: "Liked",
     onTap: () {},
   ),
   DrawerItem(
-    icon: Icons.heart_broken_sharp,
-    title: "Liked",
+    icon: Icons.translate,
+    title: "Languages",
     onTap: () {},
   ),
   DrawerItem(
-    icon: Icons.heart_broken_sharp,
-    title: "Liked",
+    icon: Icons.info_outline_rounded,
+    title: "About",
+    onTap: () {},
+  ),
+  DrawerItem(
+    icon: Icons.description_outlined,
+    title: "Licenses",
+    onTap: () {},
+  ),
+  DrawerItem(
+    icon: Icons.logout_outlined,
+    title: "Sign Out",
     onTap: () {},
   ),
 ];
