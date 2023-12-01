@@ -48,8 +48,11 @@ dependencies:
   path_provider: ^2.1.1
   cloud_firestore: ^4.13.2
   flutter_riverpod: ^2.4.9
+  json_annotation: ^4.8.1
+  json_serializable: ^6.7.1
 
 dev_dependencies:
+
   flutter_test:
     sdk: flutter
 
